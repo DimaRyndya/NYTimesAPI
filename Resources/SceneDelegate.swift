@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  NYTimesAPI
-//
-//  Created by Dmitriy Ryndya on 06.02.2023.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -21,8 +14,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let mostEmailedVC = UIStoryboard(name: "MostEmailed", bundle: nil).instantiateInitialViewController()
         let mostSharedVC = UIStoryboard(name: "MostShared", bundle: nil).instantiateInitialViewController()
         let mostViewedVC = UIStoryboard(name: "MostViewed", bundle: nil).instantiateInitialViewController()
+        let favouritesVC = UIStoryboard(name: "FavouriteArticles", bundle: nil).instantiateInitialViewController()
         let tabBarVC = UITabBarController()
-        tabBarVC.setViewControllers([mostEmailedVC ?? UIViewController(), mostSharedVC ?? UIViewController(), mostViewedVC ?? UIViewController()], animated: false)
+        tabBarVC.setViewControllers([mostEmailedVC ?? UIViewController(), mostSharedVC ?? UIViewController(), mostViewedVC ?? UIViewController(), favouritesVC ?? UIViewController()], animated: false)
+        if let mostEmailedItem = tabBarVC.tabBar.items?[0] {
+            mostEmailedItem.title = "Most Emailed"
+            mostEmailedItem.image = UIImage(systemName: "envelope.circle")
+            mostEmailedItem.selectedImage = UIImage(systemName: "envelope.circle.fill")
+        }
+        if let mostSharedItem = tabBarVC.tabBar.items?[1] {
+            mostSharedItem.title = "Most Shared"
+            mostSharedItem.image = UIImage(systemName: "rectangle.stack.badge.person.crop")
+            mostSharedItem.selectedImage = UIImage(systemName: "rectangle.stack.badge.person.crop.fill")
+        }
+        if let mostViewedItem = tabBarVC.tabBar.items?[2] {
+            mostViewedItem.title = "Most Viewed"
+            mostViewedItem.image = UIImage(systemName: "eye")
+            mostViewedItem.selectedImage = UIImage(systemName: "eye.fill")
+        }
+        if let mostViewedItem = tabBarVC.tabBar.items?[3] {
+            mostViewedItem.title = "Favourites"
+            mostViewedItem.image = UIImage(systemName: "star")
+            mostViewedItem.selectedImage = UIImage(systemName: "star.fill")
+        }
+
         window.rootViewController = tabBarVC
         self.window = window
         window.makeKeyAndVisible()

@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,33 +17,36 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="e50-qQ-1cN" kind="relationship" relationship="rootViewController" id="dEL-cS-Cy9"/>
+                        <segue destination="Byi-VB-mcx" kind="relationship" relationship="rootViewController" id="eL1-jC-iKH"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jM3-Wz-5WP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-93" y="-37"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="PF5-pZ-H9R">
+        <!--Most Shared Articles-->
+        <scene sceneID="8wd-OZ-iaE">
             <objects>
-                <viewController id="e50-qQ-1cN" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2LG-L9-wq0">
+                <tableViewController id="Byi-VB-mcx" customClass="MostSharedTableViewController" customModule="NYTimesAPI" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="YPr-6u-YNk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="Lsu-n4-Ze5"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="M8b-zk-8Yr"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VRh-pg-MrC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="Byi-VB-mcx" id="4dd-76-4Et"/>
+                            <outlet property="delegate" destination="Byi-VB-mcx" id="160-5l-VsX"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Most Shared Articles" id="pqX-3A-2wM"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2cW-dP-nCT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="673" y="-37"/>
+            <point key="canvasLocation" x="620" y="-37"/>
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>
