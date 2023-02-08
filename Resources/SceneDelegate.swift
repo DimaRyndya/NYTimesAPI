@@ -15,6 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let mostSharedVC = UIStoryboard(name: "MostShared", bundle: nil).instantiateInitialViewController()
         let mostViewedVC = UIStoryboard(name: "MostViewed", bundle: nil).instantiateInitialViewController()
         let favouritesVC = UIStoryboard(name: "FavouriteArticles", bundle: nil).instantiateInitialViewController()
+        
         let tabBarVC = UITabBarController()
         tabBarVC.setViewControllers([mostEmailedVC ?? UIViewController(), mostSharedVC ?? UIViewController(), mostViewedVC ?? UIViewController(), favouritesVC ?? UIViewController()], animated: false)
         if let mostEmailedItem = tabBarVC.tabBar.items?[0] {

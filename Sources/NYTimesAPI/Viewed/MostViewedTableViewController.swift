@@ -43,12 +43,21 @@ class MostViewedTableViewController: UITableViewController, MostViewedViewModelD
 
             return cell
         case .foundArticles:
+            tableView.separatorStyle = .singleLine
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
             cell.articleTitleLabel.text = viewModel.mostViewedArticles[indexPath.row].articleTitle
             cell.articleTextLabel.text = viewModel.mostViewedArticles[indexPath.row].articleText
 
             return cell
         }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let article = viewModel.mostViewedArticles[indexPath.row]
+        let detailVC = storyboard?.instantiateViewController(withIdentifier: "MostViewedDetail") as? MostViewedDetailViewController
+        detailVC?.viewModel.configure(with: article)
+        self.navigationController?.pushViewController(detailVC ?? UIViewController(), animated: true)
     }
 
     /*

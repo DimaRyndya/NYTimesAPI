@@ -47,6 +47,7 @@ class MostEmailedTableViewController: UITableViewController, MostEmailedViewMode
 
             return cell
         case .foundArticles:
+            tableView.separatorStyle = .singleLine
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
             cell.articleTitleLabel.text = viewModel.mostEmailedArticles[indexPath.row].articleTitle
             cell.articleTextLabel.text = viewModel.mostEmailedArticles[indexPath.row].articleText
@@ -55,7 +56,13 @@ class MostEmailedTableViewController: UITableViewController, MostEmailedViewMode
         }
     }
 
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let detailVC = storyboard?.instantiateViewController(withIdentifier: "MostEmailedDetail") as? MostEmailedDetailViewController
+        let article = viewModel.mostEmailedArticles[indexPath.row]
+        detailVC?.viewModel.configure(with: article)
+        self.navigationController?.pushViewController(detailVC ?? UIViewController(), animated: true)
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

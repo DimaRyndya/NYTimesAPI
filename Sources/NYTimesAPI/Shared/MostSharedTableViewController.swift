@@ -43,12 +43,21 @@ class MostSharedTableViewController: UITableViewController, MostSharedViewModelD
 
             return cell
         case .foundArticles:
+            tableView.separatorStyle = .singleLine
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
             cell.articleTitleLabel.text = viewModel.mostSharedArticles[indexPath.row].articleTitle
             cell.articleTextLabel.text = viewModel.mostSharedArticles[indexPath.row].articleText
 
             return cell
         }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let detailVC = storyboard?.instantiateViewController(withIdentifier: "MostSharedDetail") as? MostSharedDetailViewController
+        let artile = viewModel.mostSharedArticles[indexPath.row]
+        detailVC?.viewModel.configure(with: artile)
+        self.navigationController?.pushViewController(detailVC ?? UIViewController(), animated: true)
     }
 
     /*
