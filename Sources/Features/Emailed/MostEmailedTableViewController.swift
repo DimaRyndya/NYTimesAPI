@@ -34,7 +34,6 @@ class MostEmailedTableViewController: UITableViewController, MostEmailedViewMode
         case .foundArticles:
             return viewModel.mostEmailedArticles.count
         }
-
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -49,8 +48,17 @@ class MostEmailedTableViewController: UITableViewController, MostEmailedViewMode
         case .foundArticles:
             tableView.separatorStyle = .singleLine
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
-            cell.articleTitleLabel.text = viewModel.mostEmailedArticles[indexPath.row].articleTitle
-            cell.articleTextLabel.text = viewModel.mostEmailedArticles[indexPath.row].articleText
+            let article = viewModel.mostEmailedArticles[indexPath.row]
+            cell.configure(with: article)
+            cell.reloadData = { [weak self] in
+                self?.tableView.reloadData()
+            }
+
+            if viewModel.mostEmailedArticles[indexPath.row].isFavourite {
+                cell.favouriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            } else {
+                cell.favouriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+            }
 
             return cell
         }

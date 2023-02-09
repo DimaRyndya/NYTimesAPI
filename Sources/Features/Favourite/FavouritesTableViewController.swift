@@ -7,16 +7,19 @@ class FavouritesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let nib = UINib(nibName: "EmptyTableViewCell", bundle: nil)
+        var nib = UINib(nibName: "EmptyTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "EmptyCell")
-
+        nib = UINib(nibName: "ArticleTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "ArticleCell")
     }
 
     // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-//        return viewModel.favouriteArticles.count
+        if viewModel.favouriteArticles.isEmpty {
+            return 1
+        } else {
+            return viewModel.favouriteArticles.count
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -33,6 +36,10 @@ class FavouritesTableViewController: UITableViewController {
 
             return cell
         }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     /*

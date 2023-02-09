@@ -18,36 +18,50 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Wdw-Pp-LSp">
-                        <rect key="frame" x="16" y="5.0000000000000018" width="343" height="30.666666666666671"/>
+                        <rect key="frame" x="16" y="5.0000000000000018" width="300" height="30.666666666666671"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lfd-7r-bDU">
-                                <rect key="frame" x="0.0" y="0.0" width="343" height="14.333333333333334"/>
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="14.333333333333334"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSF-y3-2xL">
-                                <rect key="frame" x="0.0" y="17.333333333333332" width="343" height="13.333333333333332"/>
+                                <rect key="frame" x="0.0" y="17.333333333333332" width="300" height="13.333333333333332"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="300" id="eZ6-0p-W8M"/>
+                        </constraints>
                     </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XmO-rI-7WJ">
+                        <rect key="frame" x="341" y="10" width="24" height="25"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title=""/>
+                        <connections>
+                            <action selector="toggleFavouriteState:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="nhw-vJ-AVe"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="Wdw-Pp-LSp" secondAttribute="trailing" constant="16" id="8Tm-Qz-4xr"/>
+                    <constraint firstAttribute="trailing" secondItem="XmO-rI-7WJ" secondAttribute="trailing" constant="10" id="3aF-l6-jGZ"/>
                     <constraint firstItem="Wdw-Pp-LSp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="BwG-oQ-rWF"/>
                     <constraint firstItem="Wdw-Pp-LSp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Gsc-QO-Hnq"/>
                     <constraint firstAttribute="bottom" secondItem="Wdw-Pp-LSp" secondAttribute="bottom" constant="8.3300000000000001" id="eaw-1N-ygG"/>
+                    <constraint firstItem="XmO-rI-7WJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="qWC-ff-gkP"/>
+                    <constraint firstAttribute="bottom" secondItem="XmO-rI-7WJ" secondAttribute="bottom" constant="9" id="ytK-EN-ziM"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="articleTextLabel" destination="MSF-y3-2xL" id="9A0-Yo-XYz"/>
                 <outlet property="articleTitleLabel" destination="Lfd-7r-bDU" id="CNN-T2-w8p"/>
+                <outlet property="favouriteButton" destination="XmO-rI-7WJ" id="y4f-Je-KNY"/>
             </connections>
-            <point key="canvasLocation" x="574.80916030534354" y="2.8169014084507045"/>
+            <point key="canvasLocation" x="190" y="-33"/>
         </tableViewCell>
     </objects>
 </document>
