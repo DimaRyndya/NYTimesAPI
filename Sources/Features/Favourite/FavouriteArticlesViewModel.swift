@@ -5,15 +5,17 @@ protocol FavouriteArticlesViewModelDeleagte: AnyObject {
 }
 
 class FavouriteArticlesViewModel: ArticleTableViewCellDelegate {
-    var favouriteArticlesService: FavouriteArticlesService
 
-    init(favouriteArticlesService: FavouriteArticlesService) {
+    var favouriteArticlesService: FavouriteArticlesCacheService
+
+    init(favouriteArticlesService: FavouriteArticlesCacheService) {
         self.favouriteArticlesService = favouriteArticlesService
     }
 
     weak var delegate: FavouriteArticlesViewModelDeleagte?
 
     func dataIsLoaded() {
+        favouriteArticlesService.getArticles()
         if !favouriteArticlesService.favouriteArticles.isEmpty {
             delegate?.updateUI()
         }

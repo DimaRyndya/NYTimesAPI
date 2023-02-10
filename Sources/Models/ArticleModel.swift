@@ -18,6 +18,10 @@ class ArticleModel: Decodable {
         self.id = id
     }
 
+    convenience init(article: PersistedArticleModel) {
+        self.init(articleTitle: article.articleTitle ?? "", articleText: article.articleText ?? "", articleAuthor: article.articleAuthor ?? "", articleURL: article.articleURL ?? "", isFavourite: article.isFavourite, id: Int(article.id))
+    }
+
     enum CodingKeys: String, CodingKey {
         case articleTitle = "title"
         case articleText = "abstract"
