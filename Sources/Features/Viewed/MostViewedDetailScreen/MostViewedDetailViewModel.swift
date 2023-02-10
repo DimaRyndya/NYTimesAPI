@@ -7,7 +7,7 @@ class MostViewedDetailViewModel {
     var articleAuthor = ""
     var articleURL = ""
 
-    func configure(with article: MostViewedArticleModel) {
+    func configure(with article: ArticleModel) {
         articleTitle = article.articleTitle
         articleText = article.articleText
         articleAuthor = article.articleAuthor

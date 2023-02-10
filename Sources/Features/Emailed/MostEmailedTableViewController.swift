@@ -4,7 +4,7 @@ class MostEmailedTableViewController: UITableViewController, MostEmailedViewMode
 
     @IBOutlet weak var titleArticleLabel: UILabel!
 
-    let viewModel = MostEmailedViewModel()
+    var viewModel: MostEmailedViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,12 +49,13 @@ class MostEmailedTableViewController: UITableViewController, MostEmailedViewMode
             tableView.separatorStyle = .singleLine
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
             let article = viewModel.mostEmailedArticles[indexPath.row]
+            cell.delegate = viewModel
             cell.configure(with: article)
             cell.reloadData = { [weak self] in
                 self?.tableView.reloadData()
             }
 
-            if viewModel.mostEmailedArticles[indexPath.row].isFavourite {
+            if article.isFavourite {
                 cell.favouriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
             } else {
                 cell.favouriteButton.setImage(UIImage(systemName: "star"), for: .normal)

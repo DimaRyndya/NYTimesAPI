@@ -12,7 +12,7 @@ class MostViewedViewModel {
     }
 
     var state: State = .loading
-    var mostViewedArticles: [MostViewedArticleModel] = []
+    var mostViewedArticles: [ArticleModel] = []
     let mostViewedArticleService = MostViewedArticleService()
     weak var delegate: MostViewedViewModelDelegate?
 

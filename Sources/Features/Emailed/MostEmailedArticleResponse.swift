@@ -1,7 +1,7 @@
 import Foundation
 
 struct MostEmailedArticleResponse: Decodable {
-    var mostEmailedArticles: [MostEmailedArticleModel] = []
+    var mostEmailedArticles: [ArticleModel] = []
 
     enum CodingKeys: String, CodingKey {
         case mostEmailedArticles = "results"

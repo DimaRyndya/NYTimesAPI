@@ -45,8 +45,17 @@ class MostSharedTableViewController: UITableViewController, MostSharedViewModelD
         case .foundArticles:
             tableView.separatorStyle = .singleLine
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
-            cell.articleTitleLabel.text = viewModel.mostSharedArticles[indexPath.row].articleTitle
-            cell.articleTextLabel.text = viewModel.mostSharedArticles[indexPath.row].articleText
+            let article = viewModel.mostSharedArticles[indexPath.row]
+            cell.configure(with: article)
+            cell.reloadData = { [weak self] in
+                self?.tableView.reloadData()
+            }
+
+            if article.isFavourite {
+                cell.favouriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            } else {
+                cell.favouriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+            }
 
             return cell
         }

@@ -1,6 +1,6 @@
 import UIKit
 
-class MostEmailedDetailViewModel {
+class FavouriteArticlesDetailViewModel {
 
     var articleTitle = ""
     var articleText = ""

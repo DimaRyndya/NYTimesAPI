@@ -1,8 +1,8 @@
 import UIKit
 
-class FavouritesTableViewController: UITableViewController {
+class FavouritesTableViewController: UITableViewController, FavouriteArticlesViewModelDeleagte {
 
-    let viewModel = FavouriteArticlesViewModel()
+    var viewModel: FavouriteArticlesViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -11,35 +11,61 @@ class FavouritesTableViewController: UITableViewController {
         tableView.register(nib, forCellReuseIdentifier: "EmptyCell")
         nib = UINib(nibName: "ArticleTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "ArticleCell")
+
+        viewModel.delegate = self
+    }
+
+    func updateUI() {
+        tableView.reloadData()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        viewModel.dataIsLoaded()
     }
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if viewModel.favouriteArticles.isEmpty {
+        if viewModel.favouriteArticlesService.favouriteArticles.isEmpty {
             return 1
         } else {
-            return viewModel.favouriteArticles.count
+            return viewModel.favouriteArticlesService.favouriteArticles.count
         }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        if viewModel.favouriteArticles.isEmpty {
+        if viewModel.favouriteArticlesService.favouriteArticles.isEmpty {
             let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell", for: indexPath)
             tableView.separatorStyle = .none
 
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
-            cell.articleTitleLabel.text = viewModel.favouriteArticles[indexPath.row].articleTitle
-            cell.articleTextLabel.text = viewModel.favouriteArticles[indexPath.row].articleText
+            tableView.separatorStyle = .singleLine
+            let article = viewModel.favouriteArticlesService.favouriteArticles[indexPath.row]
+            cell.delegate = viewModel
+            cell.configure(with: article)
+            cell.reloadData = { [weak self] in
+                self?.tableView.reloadData()
+            }
 
+            if article.isFavourite {
+                cell.favouriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            } else {
+                cell.favouriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+            }
+            
             return cell
         }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let detailVC = storyboard?.instantiateViewController(withIdentifier: "FavouriteArticlesDetail") as? FavouriteArticlesDetailViewController
+        let article = viewModel.favouriteArticlesService.favouriteArticles[indexPath.row]
+        detailVC?.viewModel.configure(with: article)
+        self.navigationController?.pushViewController(detailVC ?? UIViewController(), animated: true)
     }
 
     /*

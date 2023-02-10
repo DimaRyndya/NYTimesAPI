@@ -4,20 +4,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        let mostEmailedVC = UIStoryboard(name: "MostEmailed", bundle: nil).instantiateInitialViewController()
+
+        let mostEmailedNavigationController = UIStoryboard(name: "MostEmailed", bundle: nil).instantiateInitialViewController() as? UINavigationController
+        let mostEmailedVC = mostEmailedNavigationController?.viewControllers.first as? MostEmailedTableViewController
+        let favouriteArticlesService = FavouriteArticlesService()
+        let mostEmailedViewModel = MostEmailedViewModel(favouriteArticlesService: favouriteArticlesService)
+        mostEmailedVC?.viewModel = mostEmailedViewModel
+
         let mostSharedVC = UIStoryboard(name: "MostShared", bundle: nil).instantiateInitialViewController()
         let mostViewedVC = UIStoryboard(name: "MostViewed", bundle: nil).instantiateInitialViewController()
-        let favouritesVC = UIStoryboard(name: "FavouriteArticles", bundle: nil).instantiateInitialViewController()
+
+        let favouriteArticlesNavigationController = UIStoryboard(name: "FavouriteArticles", bundle: nil).instantiateInitialViewController() as? UINavigationController
+        let favouriteArticlesVC = favouriteArticlesNavigationController?.viewControllers.first as? FavouritesTableViewController
+        let favouriteArticleViewModel = FavouriteArticlesViewModel(favouriteArticlesService: favouriteArticlesService)
+        favouriteArticlesVC?.viewModel = favouriteArticleViewModel
         
         let tabBarVC = UITabBarController()
-        tabBarVC.setViewControllers([mostEmailedVC ?? UIViewController(), mostSharedVC ?? UIViewController(), mostViewedVC ?? UIViewController(), favouritesVC ?? UIViewController()], animated: false)
+        tabBarVC.setViewControllers([mostEmailedNavigationController ?? UIViewController(), mostSharedVC ?? UIViewController(), mostViewedVC ?? UIViewController(), favouriteArticlesNavigationController ?? UIViewController()], animated: false)
         if let mostEmailedItem = tabBarVC.tabBar.items?[0] {
             mostEmailedItem.title = "Most Emailed"
             mostEmailedItem.image = UIImage(systemName: "envelope.circle")
