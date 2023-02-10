@@ -25,6 +25,10 @@ class MostEmailedTableViewController: UITableViewController, MostEmailedViewMode
         tableView.reloadData()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,12 +57,6 @@ class MostEmailedTableViewController: UITableViewController, MostEmailedViewMode
             cell.configure(with: article)
             cell.reloadData = { [weak self] in
                 self?.tableView.reloadData()
-            }
-
-            if article.isFavourite {
-                cell.favouriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            } else {
-                cell.favouriteButton.setImage(UIImage(systemName: "star"), for: .normal)
             }
 
             return cell

@@ -20,6 +20,11 @@ class ArticleTableViewCell: UITableViewCell {
         self.article = article
         articleTitleLabel.text = article.articleTitle
         articleTextLabel.text = article.articleText
+        if article.isFavourite {
+            favouriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        } else {
+            favouriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+        }
     }
     
     @IBAction func toggleFavouriteState(_ sender: UIButton) {

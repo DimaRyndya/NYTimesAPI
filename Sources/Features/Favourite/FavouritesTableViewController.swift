@@ -49,12 +49,6 @@ class FavouritesTableViewController: UITableViewController, FavouriteArticlesVie
             cell.reloadData = { [weak self] in
                 self?.tableView.reloadData()
             }
-
-            if article.isFavourite {
-                cell.favouriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            } else {
-                cell.favouriteButton.setImage(UIImage(systemName: "star"), for: .normal)
-            }
             
             return cell
         }
