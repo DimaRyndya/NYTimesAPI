@@ -21,6 +21,10 @@ class MostEmailedViewModel: ArticleTableViewCellDelegate {
         self.cacheService = cacheService
     }
 
+    func articleIsTheSameAS(article: ArticleModel) -> Bool {
+        let cachedArticles = cacheService.getArticles()
+        return cachedArticles.filter({ $0.id == article.id }).isEmpty == false
+    }
 
     func loadArticles() {
         mostEmailedArtcleService.fetchArticles { [weak self] response in

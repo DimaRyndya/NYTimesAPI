@@ -53,11 +53,16 @@ class MostEmailedTableViewController: UITableViewController, MostEmailedViewMode
             tableView.separatorStyle = .singleLine
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
             let article = viewModel.mostEmailedArticles[indexPath.row]
-            cell.delegate = viewModel
+            if viewModel.articleIsTheSameAS(article: article) {
+                article.isFavourite = true
+            } else {
+                article.isFavourite = false
+            }
             cell.configure(with: article)
             cell.reloadData = { [weak self] in
                 self?.tableView.reloadData()
             }
+            cell.delegate = viewModel
 
             return cell
         }
