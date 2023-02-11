@@ -28,8 +28,8 @@ class ArticleTableViewCell: UITableViewCell {
     }
     
     @IBAction func toggleFavouriteState(_ sender: UIButton) {
-        delegate?.toggleFavouriteState(for: article!)
         article?.isFavourite.toggle()
+        delegate?.toggleFavouriteState(for: article!)
         reloadData?()
     }
 }

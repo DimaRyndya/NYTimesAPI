@@ -9,7 +9,7 @@ class ArticleModel: Decodable {
 
     var isFavourite = false
 
-    init(articleTitle: String, articleText: String, articleAuthor: String, articleURL: String, isFavourite: Bool = false, id: Int) {
+    init(articleTitle: String, articleText: String, articleAuthor: String, articleURL: String, isFavourite: Bool, id: Int) {
         self.articleTitle = articleTitle
         self.articleText = articleText
         self.articleAuthor = articleAuthor

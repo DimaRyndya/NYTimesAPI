@@ -14,11 +14,11 @@ class MostEmailedViewModel: ArticleTableViewCellDelegate {
     var state: State = .loading
     var mostEmailedArticles: [ArticleModel] = []
     let mostEmailedArtcleService = MostEmailedArticleService()
-    var favouriteArticlesService: FavouriteArticlesCacheService
+    var cacheService: CacheService
     weak var delegate: MostEmailedViewModelDelegate?
 
-    init(favouriteArticlesService: FavouriteArticlesCacheService) {
-        self.favouriteArticlesService = favouriteArticlesService
+    init(cacheService: CacheService) {
+        self.cacheService = cacheService
     }
 
 
@@ -31,12 +31,10 @@ class MostEmailedViewModel: ArticleTableViewCellDelegate {
     }
 
     func toggleFavouriteState(for article: ArticleModel) {
-        if favouriteArticlesService.isArticleExists(id: article.id) {
-            favouriteArticlesService.removeArticle(with: article.id)
-
+        if cacheService.isArticleExists(id: article.id) {
+            cacheService.removeArticle(with: article.id)
         } else {
-            favouriteArticlesService.addToFavourites(article: article)
-            favouriteArticlesService.add(article: article)
+            cacheService.add(article: article)
         }
     }
 }
