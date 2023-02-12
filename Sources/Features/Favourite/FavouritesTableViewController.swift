@@ -69,10 +69,3 @@ extension FavouritesTableViewController {
     }
 }
 
-extension UITableViewController {
-    func pushDetailScreen(with article: ArticleModel) {
-        let detailVC = storyboard?.instantiateViewController(withIdentifier: "FavouriteArticlesDetail") as? FavouriteArticlesDetailViewController
-        detailVC?.viewModel.configure(with: article)
-        self.navigationController?.pushViewController(detailVC ?? UIViewController(), animated: true)
-    }
-}

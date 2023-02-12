@@ -1,6 +1,6 @@
 import UIKit
 
-final class MostEmailedDetailViewController: UIViewController {
+final class ArticleDetailViewController: UIViewController {
 
     //MARK: Outlets
 
@@ -9,10 +9,10 @@ final class MostEmailedDetailViewController: UIViewController {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var articleURLLabel: UILabel!
 
-    let viewModel = MostEmailedDetailViewModel()
+    let viewModel = ArticleDetailViewModel()
 
     //MARK: Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = viewModel.articleTitle
@@ -21,3 +21,5 @@ final class MostEmailedDetailViewController: UIViewController {
         articleURLLabel.text = viewModel.articleURL
     }
 }
+
+

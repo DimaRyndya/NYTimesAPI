@@ -18,6 +18,10 @@ final class MostViewedTableViewController: UITableViewController {
         viewModel.loadArticles()
         viewModel.state = .loading
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
 }
 
 extension MostViewedTableViewController: MostViewedViewModelDelegate {
