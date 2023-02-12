@@ -13,21 +13,27 @@ class MostEmailedViewModel: ArticleTableViewCellDelegate {
 
     var state: State = .loading
     var mostEmailedArticles: [ArticleModel] = []
-    let mostEmailedArtcleService = MostEmailedArticleService()
-    var cacheService: CacheService
+    let mostEmailedArticleService = MostEmailedArticleService()
+    let cacheService: CacheService
+
     weak var delegate: MostEmailedViewModelDelegate?
+
+    //MARK: Init
 
     init(cacheService: CacheService) {
         self.cacheService = cacheService
     }
 
-    func articleIsTheSameAS(article: ArticleModel) -> Bool {
+    //MARK: Public
+
+    func articleIsTheSameAs(article: ArticleModel) -> Bool {
         let cachedArticles = cacheService.getArticles()
-        return cachedArticles.filter({ $0.id == article.id }).isEmpty == false
+        let filteredArticles = cachedArticles.filter({ $0.id == article.id })
+        return !filteredArticles.isEmpty
     }
 
     func loadArticles() {
-        mostEmailedArtcleService.fetchArticles { [weak self] response in
+        mostEmailedArticleService.fetchArticles { [weak self] response in
             guard let self else { return }
             self.mostEmailedArticles = response
             self.delegate?.reloadUI()
@@ -40,5 +46,6 @@ class MostEmailedViewModel: ArticleTableViewCellDelegate {
         } else {
             cacheService.add(article: article)
         }
+        delegate?.reloadUI()
     }
 }

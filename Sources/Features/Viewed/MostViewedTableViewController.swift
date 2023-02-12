@@ -1,6 +1,6 @@
 import UIKit
 
-class MostViewedTableViewController: UITableViewController, MostViewedViewModelDelegate {
+final class MostViewedTableViewController: UITableViewController, MostViewedViewModelDelegate {
 
     let viewModel = MostViewedViewModel()
 
@@ -47,9 +47,6 @@ class MostViewedTableViewController: UITableViewController, MostViewedViewModelD
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
             let article = viewModel.mostViewedArticles[indexPath.row]
             cell.configure(with: article)
-            cell.reloadData = { [weak self] in
-                self?.tableView.reloadData()
-            }
 
             if article.isFavourite {
                 cell.favouriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)

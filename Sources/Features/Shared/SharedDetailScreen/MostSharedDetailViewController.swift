@@ -1,6 +1,6 @@
 import UIKit
 
-class MostSharedDetailViewController: UIViewController {
+final class MostSharedDetailViewController: UIViewController {
 
 
     @IBOutlet weak var titleLabel: UILabel!

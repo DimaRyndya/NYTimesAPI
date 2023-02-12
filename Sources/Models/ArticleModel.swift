@@ -1,32 +1,46 @@
 import UIKit
 
-class ArticleModel: Decodable {
-    let articleTitle: String
-    let articleText: String
-    let articleAuthor: String
-    let articleURL: String
+//MARK: Helper Types
+
+extension ArticleModel: Decodable {
+
+    enum CodingKeys: String, CodingKey {
+        case title, id, url
+        case description = "abstract"
+        case author = "byline"
+    }
+}
+
+//MARK: Model
+
+final class ArticleModel {
+    
+    let title: String
+    let description: String
+    let author: String
+    let url: String
     let id: Int
 
     var isFavourite = false
 
-    init(articleTitle: String, articleText: String, articleAuthor: String, articleURL: String, isFavourite: Bool, id: Int) {
-        self.articleTitle = articleTitle
-        self.articleText = articleText
-        self.articleAuthor = articleAuthor
-        self.articleURL = articleURL
+    //MARK: Init
+
+    init(title: String, description: String, author: String, url: String, isFavourite: Bool, id: Int) {
+        self.title = title
+        self.description = description
+        self.author = author
+        self.url = url
         self.isFavourite = isFavourite
         self.id = id
     }
 
     convenience init(article: PersistedArticleModel) {
-        self.init(articleTitle: article.articleTitle ?? "", articleText: article.articleText ?? "", articleAuthor: article.articleAuthor ?? "", articleURL: article.articleURL ?? "", isFavourite: article.isFavourite, id: Int(article.id))
-    }
-
-    enum CodingKeys: String, CodingKey {
-        case articleTitle = "title"
-        case articleText = "abstract"
-        case articleAuthor = "byline"
-        case articleURL = "url"
-        case id
+        self.init(
+            title: article.articleTitle ?? "",
+            description: article.articleText ?? "",
+            author: article.articleAuthor ?? "",
+            url: article.articleURL ?? "",
+            isFavourite: article.isFavourite,
+            id: Int(article.id))
     }
 }

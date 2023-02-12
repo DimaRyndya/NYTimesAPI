@@ -7,10 +7,12 @@ class FavouriteArticlesDetailViewModel {
     var articleAuthor = ""
     var articleURL = ""
 
+    //MARK: Public
+
     func configure(with article: ArticleModel) {
-        articleTitle = article.articleTitle
-        articleText = article.articleText
-        articleAuthor = article.articleAuthor
-        articleURL = article.articleURL
+        articleTitle = article.title
+        articleText = article.description
+        articleAuthor = article.author
+        articleURL = article.url
     }
 }

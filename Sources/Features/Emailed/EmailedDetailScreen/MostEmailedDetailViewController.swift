@@ -1,6 +1,8 @@
 import UIKit
 
-class MostEmailedDetailViewController: UIViewController {
+final class MostEmailedDetailViewController: UIViewController {
+
+    //MARK: Outlets
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -8,6 +10,8 @@ class MostEmailedDetailViewController: UIViewController {
     @IBOutlet weak var articleURLLabel: UILabel!
 
     let viewModel = MostEmailedDetailViewModel()
+
+    //MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()

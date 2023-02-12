@@ -1,10 +1,12 @@
 import UIKit
 
-class MostEmailedTableViewController: UITableViewController, MostEmailedViewModelDelegate {
+final class MostEmailedTableViewController: UITableViewController, MostEmailedViewModelDelegate {
 
     @IBOutlet weak var titleArticleLabel: UILabel!
 
     var viewModel: MostEmailedViewModel!
+
+    //MARK: Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,18 +19,24 @@ class MostEmailedTableViewController: UITableViewController, MostEmailedViewMode
         viewModel.delegate = self
         viewModel.loadArticles()
         viewModel.state = .loading
-
-    }
-
-    func reloadUI() {
-        viewModel.state = .foundArticles
-        tableView.reloadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
 
+    //MARK: MostEmailed ViewModel Delegate
+
+    func reloadUI() {
+        viewModel.state = .foundArticles
+        tableView.reloadData()
+    }
+
+
+}
+
+extension MostEmailedTableViewController {
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,32 +55,25 @@ class MostEmailedTableViewController: UITableViewController, MostEmailedViewMode
             let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
             spinner.startAnimating()
             tableView.separatorStyle = .none
-
             return cell
+
         case .foundArticles:
-            tableView.separatorStyle = .singleLine
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
             let article = viewModel.mostEmailedArticles[indexPath.row]
-            if viewModel.articleIsTheSameAS(article: article) {
-                article.isFavourite = true
-            } else {
-                article.isFavourite = false
-            }
-            cell.configure(with: article)
-            cell.reloadData = { [weak self] in
-                self?.tableView.reloadData()
-            }
-            cell.delegate = viewModel
 
+            tableView.separatorStyle = .singleLine
+
+            article.isFavourite = viewModel.articleIsTheSameAs(article: article)
+            
+            cell.configure(with: article)
+            cell.delegate = viewModel
             return cell
         }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let detailVC = storyboard?.instantiateViewController(withIdentifier: "MostEmailedDetail") as? MostEmailedDetailViewController
         let article = viewModel.mostEmailedArticles[indexPath.row]
-        detailVC?.viewModel.configure(with: article)
-        self.navigationController?.pushViewController(detailVC ?? UIViewController(), animated: true)
+        pushDetailScreen(with: article)
     }
 }

@@ -1,6 +1,6 @@
 import UIKit
 
-class MostViewedDetailViewController: UIViewController {
+final class MostViewedDetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
