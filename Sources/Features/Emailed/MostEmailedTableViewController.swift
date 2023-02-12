@@ -1,6 +1,6 @@
 import UIKit
 
-final class MostEmailedTableViewController: UITableViewController, MostEmailedViewModelDelegate {
+final class MostEmailedTableViewController: UITableViewController {
 
     @IBOutlet weak var titleArticleLabel: UILabel!
 
@@ -24,6 +24,9 @@ final class MostEmailedTableViewController: UITableViewController, MostEmailedVi
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
+}
+
+extension MostEmailedTableViewController: MostEmailedViewModelDelegate {
 
     //MARK: MostEmailed ViewModel Delegate
 
@@ -31,8 +34,6 @@ final class MostEmailedTableViewController: UITableViewController, MostEmailedVi
         viewModel.state = .foundArticles
         tableView.reloadData()
     }
-
-
 }
 
 extension MostEmailedTableViewController {
@@ -53,6 +54,7 @@ extension MostEmailedTableViewController {
         case .loading:
             let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath)
             let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
+
             spinner.startAnimating()
             tableView.separatorStyle = .none
             return cell

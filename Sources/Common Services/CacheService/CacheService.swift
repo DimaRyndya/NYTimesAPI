@@ -43,7 +43,7 @@ final class CacheService {
         do {
             try managedObjectContext.save()
         } catch {
-            fatalError("Error: \(error)")
+            assertionFailure("Error: \(error)")
         }
     }
 
@@ -52,7 +52,7 @@ final class CacheService {
         do {
             persistentArticles = try managedObjectContext.fetch(fetchRequest)
         } catch {
-            fatalError("Error: \(error)")
+            assertionFailure("Error: \(error)")
         }
 
         let articleModel = persistentArticles.map { ArticleModel(article: $0) }

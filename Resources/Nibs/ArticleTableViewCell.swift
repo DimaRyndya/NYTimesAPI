@@ -4,7 +4,7 @@ protocol ArticleTableViewCellDelegate: AnyObject {
     func toggleFavouriteState(for article: ArticleModel)
 }
 
-class ArticleTableViewCell: UITableViewCell {
+final class ArticleTableViewCell: UITableViewCell {
 
     //MARK: Outlets
 
@@ -25,6 +25,7 @@ class ArticleTableViewCell: UITableViewCell {
         articleTextLabel.text = article.description
 
         let imageName = article.isFavourite ? "star.fill" : "star"
+        
         favouriteButton.setImage(UIImage(systemName: imageName), for: .normal)
     }
 

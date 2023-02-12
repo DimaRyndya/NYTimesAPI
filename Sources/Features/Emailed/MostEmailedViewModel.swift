@@ -13,15 +13,16 @@ class MostEmailedViewModel: ArticleTableViewCellDelegate {
 
     var state: State = .loading
     var mostEmailedArticles: [ArticleModel] = []
-    let mostEmailedArticleService = MostEmailedArticleService()
+    let networkService: ArticlesNetworkService
     let cacheService: CacheService
 
     weak var delegate: MostEmailedViewModelDelegate?
 
     //MARK: Init
 
-    init(cacheService: CacheService) {
+    init(cacheService: CacheService, networkService: ArticlesNetworkService) {
         self.cacheService = cacheService
+        self.networkService = networkService
     }
 
     //MARK: Public
@@ -33,7 +34,7 @@ class MostEmailedViewModel: ArticleTableViewCellDelegate {
     }
 
     func loadArticles() {
-        mostEmailedArticleService.fetchArticles { [weak self] response in
+        networkService.fetchArticles { [weak self] response in
             guard let self else { return }
             self.mostEmailedArticles = response
             self.delegate?.reloadUI()

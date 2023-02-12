@@ -9,14 +9,38 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
 
+        let cacheService = CacheService()
+
+        //MARK: Set up MostEmailedScreen
+
         let mostEmailedNavigationController = UIStoryboard(name: "MostEmailed", bundle: nil).instantiateInitialViewController() as? UINavigationController
         let mostEmailedVC = mostEmailedNavigationController?.viewControllers.first as? MostEmailedTableViewController
-        let cacheService = CacheService()
-        let mostEmailedViewModel = MostEmailedViewModel(cacheService: cacheService)
+        let mostEmailedURL = "https://api.nytimes.com/svc/mostpopular/v2/emailed/30.json"
+        let mostEmailedNetworkService = ArticlesNetworkService(url: mostEmailedURL)
+        let mostEmailedViewModel = MostEmailedViewModel(cacheService: cacheService, networkService: mostEmailedNetworkService)
         mostEmailedVC?.viewModel = mostEmailedViewModel
 
-        let mostSharedVC = UIStoryboard(name: "MostShared", bundle: nil).instantiateInitialViewController()
-        let mostViewedVC = UIStoryboard(name: "MostViewed", bundle: nil).instantiateInitialViewController()
+        //MARK: Set up MostSharedScreen
+
+        let mostSharedNavigationController = UIStoryboard(name: "MostShared", bundle: nil).instantiateInitialViewController() as? UINavigationController
+        let mostSharedVC = mostSharedNavigationController?.viewControllers.first as? MostSharedTableViewController
+        let mostSharedURL = "https://api.nytimes.com/svc/mostpopular/v2/shared/30/facebook.json"
+        let mostSharedNetworkService = ArticlesNetworkService(url: mostSharedURL)
+        let mostSharedViewModel = MostSharedViewModel(cacheService: cacheService, networkService: mostSharedNetworkService)
+
+        mostSharedVC?.viewModel = mostSharedViewModel
+
+        //MARK: Set up MostViewedScreen
+
+        let mostViewedNavigationController = UIStoryboard(name: "MostViewed", bundle: nil).instantiateInitialViewController() as? UINavigationController
+        let mostViewedVC = mostViewedNavigationController?.viewControllers.first as? MostViewedTableViewController
+        let mostViewedURL = "https://api.nytimes.com/svc/mostpopular/v2/viewed/30.json"
+        let mostViewedNetworkService = ArticlesNetworkService(url: mostViewedURL)
+        let mostViewedViewModel = MostViewedViewModel(cacheService: cacheService, networkService: mostViewedNetworkService)
+
+        mostViewedVC?.viewModel = mostViewedViewModel
+
+        //MARK: Set up FavouritesScreen
 
         let favouriteArticlesNavigationController = UIStoryboard(name: "FavouriteArticles", bundle: nil).instantiateInitialViewController() as? UINavigationController
         let favouriteArticlesVC = favouriteArticlesNavigationController?.viewControllers.first as? FavouritesTableViewController
@@ -25,9 +49,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         favouriteArticlesVC?.viewModel = favouriteArticleViewModel
 
         favouriteArticlesVC?.viewModel.cacheService.managedObjectContext = managedObjectContext
+
+        //MARK: Set up TabBar
         
         let tabBarVC = UITabBarController()
-        tabBarVC.setViewControllers([mostEmailedNavigationController ?? UIViewController(), mostSharedVC ?? UIViewController(), mostViewedVC ?? UIViewController(), favouriteArticlesNavigationController ?? UIViewController()], animated: false)
+        tabBarVC.setViewControllers([mostEmailedNavigationController ?? UIViewController(), mostSharedNavigationController ?? UIViewController(), mostViewedNavigationController ?? UIViewController(), favouriteArticlesNavigationController ?? UIViewController()], animated: false)
         if let mostEmailedItem = tabBarVC.tabBar.items?[0] {
             mostEmailedItem.title = "Most Emailed"
             mostEmailedItem.image = UIImage(systemName: "envelope.circle")
@@ -81,7 +107,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
     }
-
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         saveContext()

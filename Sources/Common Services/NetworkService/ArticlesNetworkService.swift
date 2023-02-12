@@ -1,10 +1,14 @@
 import UIKit
 import Alamofire
 
-class MostViewedArticleService {
-    
-    private let baseURL = "https://api.nytimes.com/svc/mostpopular/v2/viewed/30.json"
+class ArticlesNetworkService {
+
+    private let baseURL: String
     private let parameters: Parameters = ["api-key" : "i4T2FJirMgYdE6aDvr5oBugtyBtqJff0"]
+
+    init(url: String) {
+        self.baseURL = url
+    }
 
     func fetchArticles(completion: @escaping ([ArticleModel]) -> ()) {
         AF.request(baseURL, parameters: parameters).responseDecodable(of: ArticleRequestResponse.self) { response in
@@ -16,4 +20,5 @@ class MostViewedArticleService {
             }
         }
     }
+
 }

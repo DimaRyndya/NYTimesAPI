@@ -4,7 +4,7 @@ protocol MostSharedViewModelDelegate: AnyObject {
     func reloadUI()
 }
 
-class MostSharedViewModel {
+final class MostSharedViewModel: ArticleTableViewCellDelegate{
 
     enum State {
         case loading
@@ -13,14 +13,40 @@ class MostSharedViewModel {
 
     var state: State = .loading
     var mostSharedArticles: [ArticleModel] = []
-    let mostSharedArticleService = MostSharedArticleService()
+    let cacheService: CacheService
+    let networkService: ArticlesNetworkService
+
     weak var delegate: MostSharedViewModelDelegate?
 
+    //MARK: Init
+
+    init(cacheService: CacheService, networkService: ArticlesNetworkService) {
+        self.cacheService = cacheService
+        self.networkService = networkService
+    }
+
+    //MARK: Public
+
+    func articleIsTheSameAs(article: ArticleModel) -> Bool {
+        let cachedArticles = cacheService.getArticles()
+        let filteredArticles = cachedArticles.filter({ $0.id == article.id })
+        return !filteredArticles.isEmpty
+    }
+
     func loadArticles() {
-        mostSharedArticleService.fetchArticles { [weak self] response in
+        networkService.fetchArticles { [weak self] response in
             guard let self else { return }
             self.mostSharedArticles = response
             self.delegate?.reloadUI()
         }
+    }
+
+    func toggleFavouriteState(for article: ArticleModel) {
+        if cacheService.isArticleExists(id: article.id) {
+            cacheService.removeArticle(with: article.id)
+        } else {
+            cacheService.add(article: article)
+        }
+        delegate?.reloadUI()
     }
 }

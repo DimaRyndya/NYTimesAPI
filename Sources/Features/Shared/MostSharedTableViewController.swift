@@ -1,8 +1,10 @@
 import UIKit
 
-final class MostSharedTableViewController: UITableViewController, MostSharedViewModelDelegate {
+final class MostSharedTableViewController: UITableViewController {
 
-    let viewModel = MostSharedViewModel()
+    var viewModel: MostSharedViewModel!
+
+    //MARK: Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,10 +19,22 @@ final class MostSharedTableViewController: UITableViewController, MostSharedView
         viewModel.state = .loading
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+}
+
+extension MostSharedTableViewController: MostSharedViewModelDelegate {
+
+    //MARK: MostShared ViewModel Delegate
+
     func reloadUI() {
         viewModel.state = .foundArticles
         tableView.reloadData()
     }
+}
+
+extension MostSharedTableViewController {
 
     // MARK: - Table view data source
 
@@ -43,17 +57,15 @@ final class MostSharedTableViewController: UITableViewController, MostSharedView
 
             return cell
         case .foundArticles:
-            tableView.separatorStyle = .singleLine
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
             let article = viewModel.mostSharedArticles[indexPath.row]
+
+            tableView.separatorStyle = .singleLine
+
+            article.isFavourite = viewModel.articleIsTheSameAs(article: article)
+            
+            cell.delegate = viewModel
             cell.configure(with: article)
-
-            if article.isFavourite {
-                cell.favouriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            } else {
-                cell.favouriteButton.setImage(UIImage(systemName: "star"), for: .normal)
-            }
-
             return cell
         }
     }
