@@ -2,56 +2,57 @@ import UIKit
 import CoreData
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     var window: UIWindow?
-
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        
         let window = UIWindow(windowScene: windowScene)
-
+        
         let cacheService = CacheService()
-
+        
         //MARK: - Set up MostEmailedScreen
-
+        
         let articlesNavigationController = UIStoryboard(name: "Articles", bundle: nil).instantiateInitialViewController() as? UINavigationController
-
+        
         let mostEmailedVC = articlesNavigationController?.viewControllers.first as? ArticlesTableViewController
         let mostEmailedURL = "https://api.nytimes.com/svc/mostpopular/v2/emailed/30.json"
         let mostEmailedNetworkService = ArticlesNetworkService(url: mostEmailedURL)
         let mostEmailedViewModel = ArticlesViewModel(cacheService: cacheService, networkService: mostEmailedNetworkService)
         
         mostEmailedVC?.viewModel = mostEmailedViewModel
-
+        
         //MARK: - Set up MostSharedScreen
-
+        
         let mostSharedNavigationController = UIStoryboard(name: "Articles", bundle: nil).instantiateInitialViewController() as? UINavigationController
         let mostSharedVC = mostSharedNavigationController?.viewControllers.first as? ArticlesTableViewController
         let mostSharedURL = "https://api.nytimes.com/svc/mostpopular/v2/shared/30/facebook.json"
         let mostSharedNetworkService = ArticlesNetworkService(url: mostSharedURL)
         let mostSharedViewModel = ArticlesViewModel(cacheService: cacheService, networkService: mostSharedNetworkService)
-
+        
         mostSharedVC?.viewModel = mostSharedViewModel
-
+        
         //MARK: - Set up MostViewedScreen
-
+        
         let mostViewedNavigationController = UIStoryboard(name: "Articles", bundle: nil).instantiateInitialViewController() as? UINavigationController
         let mostViewedVC = mostViewedNavigationController?.viewControllers.first as? ArticlesTableViewController
         let mostViewedURL = "https://api.nytimes.com/svc/mostpopular/v2/viewed/30.json"
         let mostViewedNetworkService = ArticlesNetworkService(url: mostViewedURL)
         let mostViewedViewModel = ArticlesViewModel(cacheService: cacheService, networkService: mostViewedNetworkService)
-
+        
         mostViewedVC?.viewModel = mostViewedViewModel
-
+        
         //MARK: - Set up FavouritesScreen
-
+        
         let favouriteArticlesNavigationController = UIStoryboard(name: "FavouriteArticles", bundle: nil).instantiateInitialViewController() as? UINavigationController
         let favouriteArticlesVC = favouriteArticlesNavigationController?.viewControllers.first as? FavouritesTableViewController
-
+        
         let favouriteArticleViewModel = FavouriteArticlesViewModel(cacheService: cacheService)
         favouriteArticlesVC?.viewModel = favouriteArticleViewModel
-
+        
         favouriteArticlesVC?.viewModel.cacheService.managedObjectContext = managedObjectContext
-
+        
         //MARK: - Set up TabBar
         
         let tabBarVC = UITabBarController()
@@ -76,14 +77,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             mostViewedItem.image = UIImage(systemName: "star")
             mostViewedItem.selectedImage = UIImage(systemName: "star.fill")
         }
-
+        
         window.rootViewController = tabBarVC
         self.window = window
         window.makeKeyAndVisible()
     }
-
+    
     // MARK: - Core Data stack
-
+    
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "NYTimesAPI")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -93,11 +94,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         })
         return container
     }()
-
+    
     lazy var managedObjectContext = persistentContainer.viewContext
-
+    
     // MARK: - Core Data Saving support
-
+    
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -109,7 +110,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
     }
-
+    
     func sceneDidEnterBackground(_ scene: UIScene) {
         saveContext()
     }

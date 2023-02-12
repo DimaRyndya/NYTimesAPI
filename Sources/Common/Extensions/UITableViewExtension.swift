@@ -1,6 +1,7 @@
 import UIKit
 
 extension UITableViewController {
+    
     func pushDetailScreen(with article: ArticleModel) {
         let storyboard = UIStoryboard(name: "Articles", bundle: nil)
         let detailVC = storyboard.instantiateViewController(withIdentifier: "ArticleDetail") as? ArticleDetailViewController

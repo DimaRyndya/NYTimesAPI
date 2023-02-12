@@ -2,20 +2,20 @@ import Foundation
 import CoreData
 
 final class CacheService {
-
+    
     //MARK: - Properties
-
+    
     var managedObjectContext: NSManagedObjectContext!
-
+    
     private let fetchRequest = NSFetchRequest<PersistedArticleModel>(entityName: "PersistedArticleModel")
-
+    
     //MARK: - Public
-
-   func removeArticle(with id: Int) {
+    
+    func removeArticle(with id: Int) {
         do {
             var articles = try managedObjectContext.fetch(fetchRequest)
             guard let index = articles.firstIndex(where: { $0.id == id }) else { return }
-
+            
             let object = articles.remove(at: index)
             managedObjectContext.delete(object)
             try? managedObjectContext.save()
@@ -23,8 +23,8 @@ final class CacheService {
             assertionFailure("Error: \(error)")
         }
     }
-
-   func isArticleExists(id: Int) -> Bool {
+    
+    func isArticleExists(id: Int) -> Bool {
         do {
             let articles = try managedObjectContext.fetch(fetchRequest)
             return articles.filter({ $0.id == id }).isEmpty == false
@@ -32,8 +32,8 @@ final class CacheService {
             fatalError("Error: \(error)")
         }
     }
-
-   func add(article: ArticleModel) {
+    
+    func add(article: ArticleModel) {
         let persistedArticle = PersistedArticleModel(context: managedObjectContext)
         persistedArticle.articleTitle = article.title
         persistedArticle.articleText = article.description
@@ -41,22 +41,22 @@ final class CacheService {
         persistedArticle.articleURL = article.url
         persistedArticle.id = Int64(article.id)
         persistedArticle.isFavourite = article.isFavourite
-
+        
         do {
             try managedObjectContext.save()
         } catch {
             assertionFailure("Error: \(error)")
         }
     }
-
-   func getArticles() -> [ArticleModel] {
+    
+    func getArticles() -> [ArticleModel] {
         var persistentArticles: [PersistedArticleModel] = []
         do {
             persistentArticles = try managedObjectContext.fetch(fetchRequest)
         } catch {
             assertionFailure("Error: \(error)")
         }
-
+        
         let articleModel = persistentArticles.map { ArticleModel(article: $0) }
         return articleModel
     }
