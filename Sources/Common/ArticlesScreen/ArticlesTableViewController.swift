@@ -1,10 +1,12 @@
 import UIKit
 
-final class MostSharedTableViewController: UITableViewController {
+final class ArticlesTableViewController: UITableViewController {
+
+    //MARK: - Properties
 
     var viewModel: ArticlesViewModel!
 
-    //MARK: Lifecycle
+    //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +26,9 @@ final class MostSharedTableViewController: UITableViewController {
     }
 }
 
-extension MostSharedTableViewController: ArticlesViewModelDelegate {
+extension ArticlesTableViewController: ArticlesViewModelDelegate {
 
-    //MARK: MostShared ViewModel Delegate
+    //MARK: - MostEmailed ViewModel Delegate
 
     func reloadUI() {
         viewModel.state = .foundArticles
@@ -34,7 +36,7 @@ extension MostSharedTableViewController: ArticlesViewModelDelegate {
     }
 }
 
-extension MostSharedTableViewController {
+extension ArticlesTableViewController {
 
     // MARK: - Table view data source
 
@@ -52,10 +54,12 @@ extension MostSharedTableViewController {
         case .loading:
             let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath)
             let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
-            spinner.startAnimating()
-            tableView.separatorStyle = .none
 
+            spinner.startAnimating()
+
+            tableView.separatorStyle = .none
             return cell
+
         case .foundArticles:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
             let article = viewModel.articles[indexPath.row]
@@ -63,16 +67,16 @@ extension MostSharedTableViewController {
             tableView.separatorStyle = .singleLine
 
             article.isFavourite = viewModel.articleIsTheSameAs(article: article)
-            
-            cell.delegate = viewModel
+
             cell.configure(with: article)
+            cell.delegate = viewModel
             return cell
         }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let artile = viewModel.articles[indexPath.row]
-        pushDetailScreen(with: artile)
+        let article = viewModel.articles[indexPath.row]
+        pushDetailScreen(with: article)
     }
 }

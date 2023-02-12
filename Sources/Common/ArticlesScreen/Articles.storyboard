@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oyA-Xe-zfD">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -29,18 +29,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Body" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ydq-QL-YHC">
-                                <rect key="frame" x="16" y="157" width="343" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mdf-wF-K2a">
                                 <rect key="frame" x="180" y="20" width="45.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1NF-7a-4rW">
+                                <rect key="frame" x="134" y="172" width="107" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Read more"/>
+                                <connections>
+                                    <action selector="didOpenLink:" destination="P6i-ec-xUr" eventType="touchUpInside" id="f2t-Jo-4JZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OS6-6V-SvK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -48,27 +50,62 @@
                             <constraint firstItem="5d2-xE-7Sv" firstAttribute="leading" secondItem="OS6-6V-SvK" secondAttribute="leading" constant="15" id="00T-Jw-d8m"/>
                             <constraint firstItem="5d2-xE-7Sv" firstAttribute="top" secondItem="Mdf-wF-K2a" secondAttribute="bottom" constant="33.5" id="4aX-hj-xqb"/>
                             <constraint firstItem="OS6-6V-SvK" firstAttribute="trailing" secondItem="5d2-xE-7Sv" secondAttribute="trailing" constant="16" id="LQf-CT-aBx"/>
-                            <constraint firstItem="Ydq-QL-YHC" firstAttribute="leading" secondItem="OS6-6V-SvK" secondAttribute="leading" constant="16" id="My1-ap-VCD"/>
                             <constraint firstItem="OS6-6V-SvK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Mdf-wF-K2a" secondAttribute="trailing" constant="16" id="Oo7-56-vvz"/>
                             <constraint firstItem="Mdf-wF-K2a" firstAttribute="leading" secondItem="OS6-6V-SvK" secondAttribute="leading" constant="180" id="SGx-tB-0AK"/>
-                            <constraint firstItem="Ydq-QL-YHC" firstAttribute="top" secondItem="eiY-Tz-VSx" secondAttribute="bottom" constant="25" id="XME-nN-RGq"/>
+                            <constraint firstItem="1NF-7a-4rW" firstAttribute="centerX" secondItem="u0U-5w-MnW" secondAttribute="centerX" id="kXM-3k-v5Q"/>
                             <constraint firstItem="eiY-Tz-VSx" firstAttribute="top" secondItem="5d2-xE-7Sv" secondAttribute="bottom" constant="16" id="nJW-Lt-mn7"/>
                             <constraint firstItem="eiY-Tz-VSx" firstAttribute="leading" secondItem="OS6-6V-SvK" secondAttribute="leading" constant="16" id="oBu-u1-VIL"/>
-                            <constraint firstItem="OS6-6V-SvK" firstAttribute="trailing" secondItem="Ydq-QL-YHC" secondAttribute="trailing" constant="16" id="pRI-U1-Pmz"/>
                             <constraint firstItem="Mdf-wF-K2a" firstAttribute="top" secondItem="OS6-6V-SvK" secondAttribute="top" constant="20" id="rNy-CB-AU4"/>
+                            <constraint firstItem="1NF-7a-4rW" firstAttribute="top" secondItem="eiY-Tz-VSx" secondAttribute="bottom" constant="40" id="x18-Se-FlZ"/>
                             <constraint firstItem="OS6-6V-SvK" firstAttribute="trailing" secondItem="eiY-Tz-VSx" secondAttribute="trailing" constant="16" id="yFU-o7-wha"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="articleURLLabel" destination="Ydq-QL-YHC" id="Z6m-gx-mMC"/>
                         <outlet property="authorLabel" destination="Mdf-wF-K2a" id="can-Ep-2G1"/>
                         <outlet property="descriptionLabel" destination="eiY-Tz-VSx" id="ffl-T4-Lt5"/>
+                        <outlet property="linkButton" destination="1NF-7a-4rW" id="QDh-ua-g5k"/>
                         <outlet property="titleLabel" destination="5d2-xE-7Sv" id="TMN-9A-Wl8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dM4-U7-bCB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1252" y="5"/>
+            <point key="canvasLocation" x="1290" y="-49"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qMS-od-gvD">
+            <objects>
+                <navigationController storyboardIdentifier="Articles" id="oyA-Xe-zfD" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BJh-eh-8Qe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Sgl-xE-hm1" kind="relationship" relationship="rootViewController" id="4Vo-BN-ind"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A5G-Ff-Pgp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-186" y="-49"/>
+        </scene>
+        <!--Most Emailed Articles-->
+        <scene sceneID="tuZ-Ct-sRr">
+            <objects>
+                <tableViewController id="Sgl-xE-hm1" customClass="ArticlesTableViewController" customModule="NYTimesAPI" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="9HV-cB-boZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="Sgl-xE-hm1" id="G3E-8d-APd"/>
+                            <outlet property="delegate" destination="Sgl-xE-hm1" id="B6f-gu-42N"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Most Emailed Articles" id="Bxc-dj-Bq6"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IeX-wk-her" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="558" y="-49"/>
         </scene>
     </scenes>
     <resources>

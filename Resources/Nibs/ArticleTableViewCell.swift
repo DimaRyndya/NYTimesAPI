@@ -6,7 +6,7 @@ protocol ArticleTableViewCellDelegate: AnyObject {
 
 final class ArticleTableViewCell: UITableViewCell {
 
-    //MARK: Outlets
+    //MARK: - Outlets
 
     @IBOutlet weak var articleTitleLabel: UILabel!
     @IBOutlet weak var articleTextLabel: UILabel!
@@ -17,7 +17,7 @@ final class ArticleTableViewCell: UITableViewCell {
 
     weak var delegate: ArticleTableViewCellDelegate?
 
-    //MARK: Public
+    //MARK: - Public
 
     func configure(with article: ArticleModel) {
         self.article = article
@@ -29,7 +29,7 @@ final class ArticleTableViewCell: UITableViewCell {
         favouriteButton.setImage(UIImage(systemName: imageName), for: .normal)
     }
 
-    //MARK: Outlet functions
+    //MARK: - Outlet functions
     
     @IBAction func toggleFavouriteState(_ sender: UIButton) {
         article?.isFavourite.toggle()

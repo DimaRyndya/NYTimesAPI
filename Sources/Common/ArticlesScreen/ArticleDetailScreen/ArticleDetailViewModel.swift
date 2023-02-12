@@ -5,7 +5,7 @@ class ArticleDetailViewModel {
     //MARK: - Properties
     
     var articleTitle = ""
-    var articleText = ""
+    var articleDescripton = ""
     var articleAuthor = ""
     var articleURL = ""
 
@@ -13,7 +13,7 @@ class ArticleDetailViewModel {
 
     func configure(with article: ArticleModel) {
         articleTitle = article.title
-        articleText = article.description
+        articleDescripton = article.description
         articleAuthor = article.author
         articleURL = article.url
     }
