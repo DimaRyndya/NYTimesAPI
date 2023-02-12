@@ -26,6 +26,7 @@
 		1D3685762993DD6A0026959E /* MostSharedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3685752993DD6A0026959E /* MostSharedDetailViewController.swift */; };
 		1D3685782993DD810026959E /* MostSharedDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3685772993DD810026959E /* MostSharedDetailViewModel.swift */; };
 		1D36858229943BFB0026959E /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D36858129943BFB0026959E /* CacheService.swift */; };
+		1D3EFDDD29992424006CD67F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D3EFDDC29992424006CD67F /* Launch Screen.storyboard */; };
 		1D45493F2996E775009589C2 /* PersistedArticleModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D45493D2996E775009589C2 /* PersistedArticleModel+CoreDataClass.swift */; };
 		1D4549402996E775009589C2 /* PersistedArticleModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D45493E2996E775009589C2 /* PersistedArticleModel+CoreDataProperties.swift */; };
 		1D5B21BF2991756300D842EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5B21BE2991756300D842EF /* AppDelegate.swift */; };
@@ -63,6 +64,7 @@
 		1D3685752993DD6A0026959E /* MostSharedDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostSharedDetailViewController.swift; sourceTree = "<group>"; };
 		1D3685772993DD810026959E /* MostSharedDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostSharedDetailViewModel.swift; sourceTree = "<group>"; };
 		1D36858129943BFB0026959E /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
+		1D3EFDDC29992424006CD67F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		1D45493D2996E775009589C2 /* PersistedArticleModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistedArticleModel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1D45493E2996E775009589C2 /* PersistedArticleModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistedArticleModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1D5B21BB2991756300D842EF /* NYTimesAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTimesAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +128,7 @@
 		1D36852A2991905B0026959E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1D3EFDDE2999255B006CD67F /* Storyboards */,
 				1D3685442991A55B0026959E /* Nibs */,
 				1D5B21CA2991756400D842EF /* Assets.xcassets */,
 				1D5B21CF2991756400D842EF /* Info.plist */,
@@ -169,6 +172,14 @@
 				1D3685772993DD810026959E /* MostSharedDetailViewModel.swift */,
 			);
 			path = SharedDetailScreen;
+			sourceTree = "<group>";
+		};
+		1D3EFDDE2999255B006CD67F /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				1D3EFDDC29992424006CD67F /* Launch Screen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		1D5B21B22991756300D842EF = {
@@ -238,7 +249,7 @@
 			children = (
 				1D6653562999163F00A7D90F /* Extensions */,
 				1D66534D2999140400A7D90F /* ArticleDetailScreen */,
-				1DDE1B122998D1E800D73601 /* Common Services */,
+				1DDE1B122998D1E800D73601 /* Services */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -261,14 +272,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		1DDE1B122998D1E800D73601 /* Common Services */ = {
+		1DDE1B122998D1E800D73601 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				1DDE1B152998D91B00D73601 /* NetworkService */,
 				1DDE1B142998D90A00D73601 /* CacheService */,
 				1DDE1B132998D1F900D73601 /* CoreData */,
 			);
-			path = "Common Services";
+			path = Services;
 			sourceTree = "<group>";
 		};
 		1DDE1B132998D1F900D73601 /* CoreData */ = {
@@ -384,6 +395,7 @@
 				1D66534F2999144600A7D90F /* ArticleDetail.storyboard in Resources */,
 				1D5B21C62991756300D842EF /* MostEmailed.storyboard in Resources */,
 				1D368528299190290026959E /* MostShared.storyboard in Resources */,
+				1D3EFDDD29992424006CD67F /* Launch Screen.storyboard in Resources */,
 				1D5B21D82991765500D842EF /* MostViewed.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,7 +616,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = /Users/dmitriyryndya/Documents/Developer/NYTimesAPI/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = MostEmailed;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIMainStoryboardFile = MostEmailed;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -637,7 +649,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = /Users/dmitriyryndya/Documents/Developer/NYTimesAPI/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = MostEmailed;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIMainStoryboardFile = MostEmailed;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
