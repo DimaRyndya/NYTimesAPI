@@ -4,9 +4,11 @@ final class MostEmailedTableViewController: UITableViewController {
 
     @IBOutlet weak var titleArticleLabel: UILabel!
 
+    //MARK: - Properties
+
     var viewModel: MostEmailedViewModel!
 
-    //MARK: Lifecycle
+    //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +30,7 @@ final class MostEmailedTableViewController: UITableViewController {
 
 extension MostEmailedTableViewController: MostEmailedViewModelDelegate {
 
-    //MARK: MostEmailed ViewModel Delegate
+    //MARK: - MostEmailed ViewModel Delegate
 
     func reloadUI() {
         viewModel.state = .foundArticles

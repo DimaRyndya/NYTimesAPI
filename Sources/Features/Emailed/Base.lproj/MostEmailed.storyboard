@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -44,67 +43,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w4y-UY-M0x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="558" y="-49"/>
-        </scene>
-        <!--Most Emailed Detail View Controller-->
-        <scene sceneID="UOv-T6-6Rs">
-            <objects>
-                <viewController storyboardIdentifier="MostEmailedDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="57q-Dy-MWL" customClass="MostEmailedDetailViewController" customModule="NYTimesAPI" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Z4f-Bd-45r">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jz7-Gy-B2m">
-                                <rect key="frame" x="15" y="71.5" width="344" height="24"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brief description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwT-dE-wN0">
-                                <rect key="frame" x="16" y="111.5" width="343" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Body" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dh6-vL-ydG">
-                                <rect key="frame" x="16" y="157" width="343" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaU-3c-eVn">
-                                <rect key="frame" x="180" y="20" width="45.5" height="18"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="o1d-Jc-qzH"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="rwT-dE-wN0" firstAttribute="leading" secondItem="o1d-Jc-qzH" secondAttribute="leading" constant="16" id="1xm-yE-urP"/>
-                            <constraint firstItem="DaU-3c-eVn" firstAttribute="top" secondItem="o1d-Jc-qzH" secondAttribute="top" constant="20" id="6vi-iI-vaW"/>
-                            <constraint firstItem="jz7-Gy-B2m" firstAttribute="top" secondItem="DaU-3c-eVn" secondAttribute="bottom" constant="33.5" id="ENo-Vr-PF2"/>
-                            <constraint firstItem="DaU-3c-eVn" firstAttribute="leading" secondItem="o1d-Jc-qzH" secondAttribute="leading" constant="180" id="UZX-Q7-0Jh"/>
-                            <constraint firstItem="rwT-dE-wN0" firstAttribute="top" secondItem="jz7-Gy-B2m" secondAttribute="bottom" constant="16" id="Xvz-xE-Kps"/>
-                            <constraint firstItem="o1d-Jc-qzH" firstAttribute="trailing" secondItem="Dh6-vL-ydG" secondAttribute="trailing" constant="16" id="f9P-2y-RV5"/>
-                            <constraint firstItem="Dh6-vL-ydG" firstAttribute="leading" secondItem="o1d-Jc-qzH" secondAttribute="leading" constant="16" id="gKJ-oj-FcG"/>
-                            <constraint firstItem="jz7-Gy-B2m" firstAttribute="leading" secondItem="o1d-Jc-qzH" secondAttribute="leading" constant="15" id="ljr-2H-mpg"/>
-                            <constraint firstItem="o1d-Jc-qzH" firstAttribute="trailing" secondItem="jz7-Gy-B2m" secondAttribute="trailing" constant="16" id="nkh-CK-Ogl"/>
-                            <constraint firstItem="o1d-Jc-qzH" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DaU-3c-eVn" secondAttribute="trailing" constant="16" id="tdI-Qe-h8m"/>
-                            <constraint firstItem="Dh6-vL-ydG" firstAttribute="top" secondItem="rwT-dE-wN0" secondAttribute="bottom" constant="25" id="wWj-17-eN3"/>
-                            <constraint firstItem="o1d-Jc-qzH" firstAttribute="trailing" secondItem="rwT-dE-wN0" secondAttribute="trailing" constant="16" id="xps-Jd-pWs"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="articleURLLabel" destination="Dh6-vL-ydG" id="SST-XX-aiB"/>
-                        <outlet property="authorLabel" destination="DaU-3c-eVn" id="bmc-S0-oeC"/>
-                        <outlet property="descriptionLabel" destination="rwT-dE-wN0" id="imT-OZ-5j0"/>
-                        <outlet property="titleLabel" destination="jz7-Gy-B2m" id="sYs-dH-jXu"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VrY-FZ-RPs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1303" y="-49"/>
         </scene>
     </scenes>
     <resources>

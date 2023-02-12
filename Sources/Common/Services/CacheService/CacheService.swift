@@ -3,11 +3,13 @@ import CoreData
 
 final class CacheService {
 
+    //MARK: - Properties
+
     var managedObjectContext: NSManagedObjectContext!
 
     private let fetchRequest = NSFetchRequest<PersistedArticleModel>(entityName: "PersistedArticleModel")
 
-    //MARK: Public
+    //MARK: - Public
 
    func removeArticle(with id: Int) {
         do {

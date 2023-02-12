@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,67 +42,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2cW-dP-nCT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="620" y="-37"/>
-        </scene>
-        <!--Most Shared Detail View Controller-->
-        <scene sceneID="UAx-BQ-h6Y">
-            <objects>
-                <viewController storyboardIdentifier="MostSharedDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LKS-U4-tQ9" customClass="MostSharedDetailViewController" customModule="NYTimesAPI" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="0nC-Vn-mYR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ce5-d4-Xa8">
-                                <rect key="frame" x="15" y="71.5" width="344" height="24"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brief description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZk-jz-qr7">
-                                <rect key="frame" x="16" y="111.5" width="343" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Body" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="joM-Yh-7mB">
-                                <rect key="frame" x="16" y="157" width="343" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGs-Uu-4bq">
-                                <rect key="frame" x="180" y="20" width="45.5" height="18"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="MGF-tM-U1m"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="YGs-Uu-4bq" firstAttribute="leading" secondItem="MGF-tM-U1m" secondAttribute="leading" constant="180" id="6x7-dN-EBI"/>
-                            <constraint firstItem="MGF-tM-U1m" firstAttribute="trailing" secondItem="UZk-jz-qr7" secondAttribute="trailing" constant="16" id="Anw-HX-Kwu"/>
-                            <constraint firstItem="Ce5-d4-Xa8" firstAttribute="leading" secondItem="MGF-tM-U1m" secondAttribute="leading" constant="15" id="Aoa-bC-Hwn"/>
-                            <constraint firstItem="UZk-jz-qr7" firstAttribute="leading" secondItem="MGF-tM-U1m" secondAttribute="leading" constant="16" id="EPH-Zu-mZU"/>
-                            <constraint firstItem="joM-Yh-7mB" firstAttribute="top" secondItem="UZk-jz-qr7" secondAttribute="bottom" constant="25" id="ONY-iO-k4D"/>
-                            <constraint firstItem="MGF-tM-U1m" firstAttribute="trailing" secondItem="Ce5-d4-Xa8" secondAttribute="trailing" constant="16" id="VA3-sd-xNL"/>
-                            <constraint firstItem="YGs-Uu-4bq" firstAttribute="top" secondItem="MGF-tM-U1m" secondAttribute="top" constant="20" id="Z1M-gh-Jdl"/>
-                            <constraint firstItem="joM-Yh-7mB" firstAttribute="leading" secondItem="MGF-tM-U1m" secondAttribute="leading" constant="16" id="h20-Uk-0td"/>
-                            <constraint firstItem="Ce5-d4-Xa8" firstAttribute="top" secondItem="YGs-Uu-4bq" secondAttribute="bottom" constant="33.5" id="k5O-8F-XGK"/>
-                            <constraint firstItem="MGF-tM-U1m" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YGs-Uu-4bq" secondAttribute="trailing" constant="16" id="kFa-iv-Ad3"/>
-                            <constraint firstItem="UZk-jz-qr7" firstAttribute="top" secondItem="Ce5-d4-Xa8" secondAttribute="bottom" constant="16" id="l8W-7f-wXc"/>
-                            <constraint firstItem="MGF-tM-U1m" firstAttribute="trailing" secondItem="joM-Yh-7mB" secondAttribute="trailing" constant="16" id="rHb-D2-zcO"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="articleURLLabel" destination="joM-Yh-7mB" id="18h-KM-BZR"/>
-                        <outlet property="authorLabel" destination="YGs-Uu-4bq" id="F8f-Vb-5M2"/>
-                        <outlet property="descriptionLabel" destination="UZk-jz-qr7" id="hTC-Vx-ot8"/>
-                        <outlet property="titleLabel" destination="Ce5-d4-Xa8" id="jRi-Xz-heD"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mXY-5P-aHY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1444" y="-37"/>
         </scene>
     </scenes>
     <resources>

@@ -11,20 +11,22 @@ class MostViewedViewModel {
         case foundArticles
     }
 
+    //MARK: - Properties
+
     var state: State = .loading
     var mostViewedArticles: [ArticleModel] = []
     let cacheService: CacheService
     let networkService: ArticlesNetworkService
     weak var delegate: MostViewedViewModelDelegate?
 
-    //MARK: Init
+    //MARK: - Init
 
     init(cacheService: CacheService, networkService: ArticlesNetworkService) {
         self.cacheService = cacheService
         self.networkService = networkService
     }
 
-    //MARK: Public
+    //MARK: - Public
 
     func articleIsTheSameAs(article: ArticleModel) -> Bool {
         let cachedArticles = cacheService.getArticles()

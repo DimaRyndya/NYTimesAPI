@@ -10,7 +10,8 @@ final class MostSharedViewModel: ArticleTableViewCellDelegate{
         case loading
         case foundArticles
     }
-
+    //MARK: - Properties
+    
     var state: State = .loading
     var mostSharedArticles: [ArticleModel] = []
     let cacheService: CacheService

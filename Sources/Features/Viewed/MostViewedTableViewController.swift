@@ -2,6 +2,8 @@ import UIKit
 
 final class MostViewedTableViewController: UITableViewController {
 
+    //MARK: - Properties
+
     var viewModel: MostViewedViewModel!
 
     //MARK: Lifecycle

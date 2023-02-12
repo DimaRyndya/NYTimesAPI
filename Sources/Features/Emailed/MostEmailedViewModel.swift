@@ -11,6 +11,8 @@ class MostEmailedViewModel: ArticleTableViewCellDelegate {
         case foundArticles
     }
 
+    //MARK: - Properties
+    
     var state: State = .loading
     var mostEmailedArticles: [ArticleModel] = []
     let networkService: ArticlesNetworkService
@@ -18,14 +20,14 @@ class MostEmailedViewModel: ArticleTableViewCellDelegate {
 
     weak var delegate: MostEmailedViewModelDelegate?
 
-    //MARK: Init
+    //MARK: - Init
 
     init(cacheService: CacheService, networkService: ArticlesNetworkService) {
         self.cacheService = cacheService
         self.networkService = networkService
     }
 
-    //MARK: Public
+    //MARK: - Public
 
     func articleIsTheSameAs(article: ArticleModel) -> Bool {
         let cachedArticles = cacheService.getArticles()

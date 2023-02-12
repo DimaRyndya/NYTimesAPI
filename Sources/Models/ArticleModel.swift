@@ -1,6 +1,6 @@
 import UIKit
 
-//MARK: Helper Types
+//MARK: - Helper Types
 
 extension ArticleModel: Decodable {
 
@@ -11,7 +11,7 @@ extension ArticleModel: Decodable {
     }
 }
 
-//MARK: Model
+//MARK: - Model
 
 final class ArticleModel {
     
@@ -23,7 +23,7 @@ final class ArticleModel {
 
     var isFavourite = false
 
-    //MARK: Init
+    //MARK: - Init
 
     init(title: String, description: String, author: String, url: String, isFavourite: Bool, id: Int) {
         self.title = title

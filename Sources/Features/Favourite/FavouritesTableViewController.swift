@@ -4,7 +4,7 @@ final class FavouritesTableViewController: UITableViewController {
 
     var viewModel: FavouriteArticlesViewModel!
 
-    //MARK: LifeCycle
+    //MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,7 @@ final class FavouritesTableViewController: UITableViewController {
 
 extension FavouritesTableViewController: FavouriteArticlesViewModelDeleagte {
 
-    //MARK: FavouriteArticles ViewModel Deleagte
+    //MARK: - FavouriteArticles ViewModel Deleagte
 
     func reloadUI() {
         tableView.reloadData()

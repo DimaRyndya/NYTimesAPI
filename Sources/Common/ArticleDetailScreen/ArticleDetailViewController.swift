@@ -2,7 +2,7 @@ import UIKit
 
 final class ArticleDetailViewController: UIViewController {
 
-    //MARK: Outlets
+    //MARK: - Outlets
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -11,7 +11,7 @@ final class ArticleDetailViewController: UIViewController {
 
     let viewModel = ArticleDetailViewModel()
 
-    //MARK: Lifecycle
+    //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()

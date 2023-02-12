@@ -11,7 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let cacheService = CacheService()
 
-        //MARK: Set up MostEmailedScreen
+        //MARK: - Set up MostEmailedScreen
 
         let mostEmailedNavigationController = UIStoryboard(name: "MostEmailed", bundle: nil).instantiateInitialViewController() as? UINavigationController
         let mostEmailedVC = mostEmailedNavigationController?.viewControllers.first as? MostEmailedTableViewController
@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let mostEmailedViewModel = MostEmailedViewModel(cacheService: cacheService, networkService: mostEmailedNetworkService)
         mostEmailedVC?.viewModel = mostEmailedViewModel
 
-        //MARK: Set up MostSharedScreen
+        //MARK: - Set up MostSharedScreen
 
         let mostSharedNavigationController = UIStoryboard(name: "MostShared", bundle: nil).instantiateInitialViewController() as? UINavigationController
         let mostSharedVC = mostSharedNavigationController?.viewControllers.first as? MostSharedTableViewController
@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         mostSharedVC?.viewModel = mostSharedViewModel
 
-        //MARK: Set up MostViewedScreen
+        //MARK: - Set up MostViewedScreen
 
         let mostViewedNavigationController = UIStoryboard(name: "MostViewed", bundle: nil).instantiateInitialViewController() as? UINavigationController
         let mostViewedVC = mostViewedNavigationController?.viewControllers.first as? MostViewedTableViewController
@@ -40,7 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         mostViewedVC?.viewModel = mostViewedViewModel
 
-        //MARK: Set up FavouritesScreen
+        //MARK: - Set up FavouritesScreen
 
         let favouriteArticlesNavigationController = UIStoryboard(name: "FavouriteArticles", bundle: nil).instantiateInitialViewController() as? UINavigationController
         let favouriteArticlesVC = favouriteArticlesNavigationController?.viewControllers.first as? FavouritesTableViewController
@@ -50,7 +50,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         favouriteArticlesVC?.viewModel.cacheService.managedObjectContext = managedObjectContext
 
-        //MARK: Set up TabBar
+        //MARK: - Set up TabBar
         
         let tabBarVC = UITabBarController()
         tabBarVC.setViewControllers([mostEmailedNavigationController ?? UIViewController(), mostSharedNavigationController ?? UIViewController(), mostViewedNavigationController ?? UIViewController(), favouriteArticlesNavigationController ?? UIViewController()], animated: false)

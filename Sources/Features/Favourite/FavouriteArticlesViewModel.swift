@@ -6,13 +6,15 @@ protocol FavouriteArticlesViewModelDeleagte: AnyObject {
 
 final class FavouriteArticlesViewModel {
 
+    //MARK: - Properties
+
     private(set) var favouriteArticles: [ArticleModel] = []
 
     var cacheService: CacheService
 
     weak var delegate: FavouriteArticlesViewModelDeleagte?
 
-    //MARK: init
+    //MARK: - Init
 
     init(cacheService: CacheService) {
         self.cacheService = cacheService
