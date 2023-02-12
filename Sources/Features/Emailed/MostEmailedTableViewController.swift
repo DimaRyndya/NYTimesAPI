@@ -6,7 +6,7 @@ final class MostEmailedTableViewController: UITableViewController {
 
     //MARK: - Properties
 
-    var viewModel: MostEmailedViewModel!
+    var viewModel: ArticlesViewModel!
 
     //MARK: - Lifecycle
 
@@ -28,7 +28,7 @@ final class MostEmailedTableViewController: UITableViewController {
     }
 }
 
-extension MostEmailedTableViewController: MostEmailedViewModelDelegate {
+extension MostEmailedTableViewController: ArticlesViewModelDelegate {
 
     //MARK: - MostEmailed ViewModel Delegate
 
@@ -47,7 +47,7 @@ extension MostEmailedTableViewController {
         case .loading:
             return 1
         case .foundArticles:
-            return viewModel.mostEmailedArticles.count
+            return viewModel.articles.count
         }
     }
 
@@ -63,7 +63,7 @@ extension MostEmailedTableViewController {
 
         case .foundArticles:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
-            let article = viewModel.mostEmailedArticles[indexPath.row]
+            let article = viewModel.articles[indexPath.row]
 
             tableView.separatorStyle = .singleLine
 
@@ -77,7 +77,7 @@ extension MostEmailedTableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let article = viewModel.mostEmailedArticles[indexPath.row]
+        let article = viewModel.articles[indexPath.row]
         pushDetailScreen(with: article)
     }
 }

@@ -4,7 +4,7 @@ final class MostViewedTableViewController: UITableViewController {
 
     //MARK: - Properties
 
-    var viewModel: MostViewedViewModel!
+    var viewModel: ArticlesViewModel!
 
     //MARK: Lifecycle
 
@@ -26,7 +26,8 @@ final class MostViewedTableViewController: UITableViewController {
     }
 }
 
-extension MostViewedTableViewController: MostViewedViewModelDelegate {
+extension MostViewedTableViewController: ArticlesViewModelDelegate {
+
     func reloadUI() {
         viewModel.state = .foundArticles
         tableView.reloadData()
@@ -42,7 +43,7 @@ extension MostViewedTableViewController {
         case .loading:
             return 1
         case .foundArticles:
-            return viewModel.mostViewedArticles.count
+            return viewModel.articles.count
         }
     }
 
@@ -58,7 +59,7 @@ extension MostViewedTableViewController {
         case .foundArticles:
             tableView.separatorStyle = .singleLine
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
-            let article = viewModel.mostViewedArticles[indexPath.row]
+            let article = viewModel.articles[indexPath.row]
 
             tableView.separatorStyle = .singleLine
 
@@ -72,7 +73,7 @@ extension MostViewedTableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let article = viewModel.mostViewedArticles[indexPath.row]
+        let article = viewModel.articles[indexPath.row]
         pushDetailScreen(with: article)
     }
 }

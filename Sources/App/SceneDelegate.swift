@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let mostEmailedVC = mostEmailedNavigationController?.viewControllers.first as? MostEmailedTableViewController
         let mostEmailedURL = "https://api.nytimes.com/svc/mostpopular/v2/emailed/30.json"
         let mostEmailedNetworkService = ArticlesNetworkService(url: mostEmailedURL)
-        let mostEmailedViewModel = MostEmailedViewModel(cacheService: cacheService, networkService: mostEmailedNetworkService)
+        let mostEmailedViewModel = ArticlesViewModel(cacheService: cacheService, networkService: mostEmailedNetworkService)
         mostEmailedVC?.viewModel = mostEmailedViewModel
 
         //MARK: - Set up MostSharedScreen
@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let mostSharedVC = mostSharedNavigationController?.viewControllers.first as? MostSharedTableViewController
         let mostSharedURL = "https://api.nytimes.com/svc/mostpopular/v2/shared/30/facebook.json"
         let mostSharedNetworkService = ArticlesNetworkService(url: mostSharedURL)
-        let mostSharedViewModel = MostSharedViewModel(cacheService: cacheService, networkService: mostSharedNetworkService)
+        let mostSharedViewModel = ArticlesViewModel(cacheService: cacheService, networkService: mostSharedNetworkService)
 
         mostSharedVC?.viewModel = mostSharedViewModel
 
@@ -36,7 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let mostViewedVC = mostViewedNavigationController?.viewControllers.first as? MostViewedTableViewController
         let mostViewedURL = "https://api.nytimes.com/svc/mostpopular/v2/viewed/30.json"
         let mostViewedNetworkService = ArticlesNetworkService(url: mostViewedURL)
-        let mostViewedViewModel = MostViewedViewModel(cacheService: cacheService, networkService: mostViewedNetworkService)
+        let mostViewedViewModel = ArticlesViewModel(cacheService: cacheService, networkService: mostViewedNetworkService)
 
         mostViewedVC?.viewModel = mostViewedViewModel
 

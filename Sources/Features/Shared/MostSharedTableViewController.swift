@@ -2,7 +2,7 @@ import UIKit
 
 final class MostSharedTableViewController: UITableViewController {
 
-    var viewModel: MostSharedViewModel!
+    var viewModel: ArticlesViewModel!
 
     //MARK: Lifecycle
 
@@ -24,7 +24,7 @@ final class MostSharedTableViewController: UITableViewController {
     }
 }
 
-extension MostSharedTableViewController: MostSharedViewModelDelegate {
+extension MostSharedTableViewController: ArticlesViewModelDelegate {
 
     //MARK: MostShared ViewModel Delegate
 
@@ -43,7 +43,7 @@ extension MostSharedTableViewController {
         case .loading:
             return 1
         case .foundArticles:
-            return viewModel.mostSharedArticles.count
+            return viewModel.articles.count
         }
     }
 
@@ -58,7 +58,7 @@ extension MostSharedTableViewController {
             return cell
         case .foundArticles:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
-            let article = viewModel.mostSharedArticles[indexPath.row]
+            let article = viewModel.articles[indexPath.row]
 
             tableView.separatorStyle = .singleLine
 
@@ -72,7 +72,7 @@ extension MostSharedTableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let artile = viewModel.mostSharedArticles[indexPath.row]
+        let artile = viewModel.articles[indexPath.row]
         pushDetailScreen(with: artile)
     }
 }

@@ -1,10 +1,10 @@
 import UIKit
 
-protocol MostViewedViewModelDelegate: AnyObject {
+protocol ArticlesViewModelDelegate: AnyObject {
     func reloadUI()
 }
 
-class MostViewedViewModel {
+class ArticlesViewModel: ArticleTableViewCellDelegate {
 
     enum State {
         case loading
@@ -14,10 +14,11 @@ class MostViewedViewModel {
     //MARK: - Properties
 
     var state: State = .loading
-    var mostViewedArticles: [ArticleModel] = []
-    let cacheService: CacheService
+    var articles: [ArticleModel] = []
     let networkService: ArticlesNetworkService
-    weak var delegate: MostViewedViewModelDelegate?
+    let cacheService: CacheService
+
+    weak var delegate: ArticlesViewModelDelegate?
 
     //MARK: - Init
 
@@ -33,14 +34,11 @@ class MostViewedViewModel {
         let filteredArticles = cachedArticles.filter({ $0.id == article.id })
         return !filteredArticles.isEmpty
     }
-}
 
-extension MostViewedViewModel: ArticleTableViewCellDelegate {
-    
     func loadArticles() {
         networkService.fetchArticles { [weak self] response in
             guard let self else { return }
-            self.mostViewedArticles = response
+            self.articles = response
             self.delegate?.reloadUI()
         }
     }
