@@ -9,19 +9,21 @@ final class ArticleDetailViewController: UIViewController {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var linkButton: UIButton!
     
-    let viewModel = ArticleDetailViewModel()
+    var viewModel =  ArticleDetailViewModel()
     
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.title = "Article Detail"
         titleLabel.text = viewModel.articleTitle
         descriptionLabel.text = viewModel.articleDescripton
         authorLabel.text = viewModel.articleAuthor
         linkButton.setTitle("Read more", for: .normal)
     }
     
-    //MARK: - IBAction
+    //MARK: - IBActions
     
     @IBAction func didOpenLink(_ sender: Any) {
         if let url = URL(string: viewModel.articleURL) {

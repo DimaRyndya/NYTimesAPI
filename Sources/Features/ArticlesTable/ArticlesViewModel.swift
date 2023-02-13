@@ -15,8 +15,9 @@ final class ArticlesViewModel: ArticleTableViewCellDelegate {
     
     var state: State = .loading
     var articles: [ArticleModel] = []
-    let networkService: ArticlesNetworkService
-    let cacheService: CacheService
+
+    private let networkService: ArticlesNetworkService
+    private let cacheService: CacheService
     
     weak var delegate: ArticlesViewModelDelegate?
     

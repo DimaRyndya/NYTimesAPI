@@ -24,6 +24,8 @@ final class FavouriteArticlesViewModel {
     }
 }
 
+//MARK: - ArticleTableViewCell Delegate
+
 extension FavouriteArticlesViewModel: ArticleTableViewCellDelegate {
 
     func articlesIsUpdated() {

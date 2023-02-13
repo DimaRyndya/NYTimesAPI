@@ -23,18 +23,18 @@ final class FavouritesTableViewController: UITableViewController {
     }
 }
 
+//MARK: - FavouriteArticles ViewModel Deleagte
+
 extension FavouritesTableViewController: FavouriteArticlesViewModelDeleagte {
-    
-    //MARK: - FavouriteArticles ViewModel Deleagte
     
     func reloadUI() {
         tableView.reloadData()
     }
 }
 
+// MARK: - Table view data source
+
 extension FavouritesTableViewController {
-    
-    // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if viewModel.favouriteArticles.isEmpty {
@@ -68,4 +68,3 @@ extension FavouritesTableViewController {
         pushDetailScreen(with: article)
     }
 }
-

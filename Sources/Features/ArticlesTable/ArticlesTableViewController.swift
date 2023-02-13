@@ -26,9 +26,9 @@ final class ArticlesTableViewController: UITableViewController {
     }
 }
 
+//MARK: - MostEmailed ViewModel Delegate
+
 extension ArticlesTableViewController: ArticlesViewModelDelegate {
-    
-    //MARK: - MostEmailed ViewModel Delegate
     
     func reloadUI() {
         viewModel.state = .foundArticles
@@ -36,9 +36,9 @@ extension ArticlesTableViewController: ArticlesViewModelDelegate {
     }
 }
 
+// MARK: - Table view data source
+
 extension ArticlesTableViewController {
-    
-    // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch viewModel.state {

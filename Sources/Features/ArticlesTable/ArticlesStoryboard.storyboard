@@ -74,7 +74,7 @@
         <!--Navigation Controller-->
         <scene sceneID="qMS-od-gvD">
             <objects>
-                <navigationController storyboardIdentifier="Articles" id="oyA-Xe-zfD" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ArticlesStoryboard" id="oyA-Xe-zfD" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BJh-eh-8Qe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

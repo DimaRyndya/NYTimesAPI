@@ -14,38 +14,42 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //MARK: - Set up MostEmailedScreen
         
-        let articlesNavigationController = UIStoryboard(name: "Articles", bundle: nil).instantiateInitialViewController() as? UINavigationController
+        let mostEmailedNavigationController = UIStoryboard(name: "ArticlesStoryboard", bundle: nil).instantiateInitialViewController() as? UINavigationController
         
-        let mostEmailedVC = articlesNavigationController?.viewControllers.first as? ArticlesTableViewController
+        let mostEmailedVC = mostEmailedNavigationController?.viewControllers.first as? ArticlesTableViewController
+
         let mostEmailedURL = "https://api.nytimes.com/svc/mostpopular/v2/emailed/30.json"
         let mostEmailedNetworkService = ArticlesNetworkService(url: mostEmailedURL)
         let mostEmailedViewModel = ArticlesViewModel(cacheService: cacheService, networkService: mostEmailedNetworkService)
         
+        mostEmailedVC?.title = "Most Emailed Articles"
         mostEmailedVC?.viewModel = mostEmailedViewModel
         
         //MARK: - Set up MostSharedScreen
         
-        let mostSharedNavigationController = UIStoryboard(name: "Articles", bundle: nil).instantiateInitialViewController() as? UINavigationController
+        let mostSharedNavigationController = UIStoryboard(name: "ArticlesStoryboard", bundle: nil).instantiateInitialViewController() as? UINavigationController
         let mostSharedVC = mostSharedNavigationController?.viewControllers.first as? ArticlesTableViewController
         let mostSharedURL = "https://api.nytimes.com/svc/mostpopular/v2/shared/30/facebook.json"
         let mostSharedNetworkService = ArticlesNetworkService(url: mostSharedURL)
         let mostSharedViewModel = ArticlesViewModel(cacheService: cacheService, networkService: mostSharedNetworkService)
         
+        mostSharedVC?.title = "Most Shared Articles"
         mostSharedVC?.viewModel = mostSharedViewModel
         
         //MARK: - Set up MostViewedScreen
         
-        let mostViewedNavigationController = UIStoryboard(name: "Articles", bundle: nil).instantiateInitialViewController() as? UINavigationController
+        let mostViewedNavigationController = UIStoryboard(name: "ArticlesStoryboard", bundle: nil).instantiateInitialViewController() as? UINavigationController
         let mostViewedVC = mostViewedNavigationController?.viewControllers.first as? ArticlesTableViewController
         let mostViewedURL = "https://api.nytimes.com/svc/mostpopular/v2/viewed/30.json"
         let mostViewedNetworkService = ArticlesNetworkService(url: mostViewedURL)
         let mostViewedViewModel = ArticlesViewModel(cacheService: cacheService, networkService: mostViewedNetworkService)
         
+        mostViewedVC?.title = "Most Viewed Articles"
         mostViewedVC?.viewModel = mostViewedViewModel
         
         //MARK: - Set up FavouritesScreen
         
-        let favouriteArticlesNavigationController = UIStoryboard(name: "FavouriteArticles", bundle: nil).instantiateInitialViewController() as? UINavigationController
+        let favouriteArticlesNavigationController = UIStoryboard(name: "FavouriteArticlesStoryboard", bundle: nil).instantiateInitialViewController() as? UINavigationController
         let favouriteArticlesVC = favouriteArticlesNavigationController?.viewControllers.first as? FavouritesTableViewController
         
         let favouriteArticleViewModel = FavouriteArticlesViewModel(cacheService: cacheService)
@@ -56,7 +60,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //MARK: - Set up TabBar
         
         let tabBarVC = UITabBarController()
-        tabBarVC.setViewControllers([articlesNavigationController ?? UIViewController(), mostSharedNavigationController ?? UIViewController(), mostViewedNavigationController ?? UIViewController(), favouriteArticlesNavigationController ?? UIViewController()], animated: false)
+        tabBarVC.setViewControllers([mostEmailedNavigationController ?? UIViewController(), mostSharedNavigationController ?? UIViewController(), mostViewedNavigationController ?? UIViewController(), favouriteArticlesNavigationController ?? UIViewController()], animated: false)
+        
         if let mostEmailedItem = tabBarVC.tabBar.items?[0] {
             mostEmailedItem.title = "Most Emailed"
             mostEmailedItem.image = UIImage(systemName: "envelope.circle")
