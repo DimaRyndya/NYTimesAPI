@@ -1,18 +1,29 @@
 import UIKit
 
+// MARK: - Helper Types
+
+private enum EmptyCellConstants {
+    static let nibName = "EmptyTableViewCell"
+    static let identifier = "EmptyCell"
+}
+
 final class FavouritesTableViewController: UITableViewController {
     
     var viewModel: FavouriteArticlesViewModel!
+
+    static let storybordIdentifier = "FavouriteArticlesStoryboard"
     
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var nib = UINib(nibName: "EmptyTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "EmptyCell")
-        nib = UINib(nibName: "ArticleTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "ArticleCell")
+        var nib = UINib(nibName: EmptyCellConstants.nibName, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: EmptyCellConstants.identifier)
+        nib = UINib(nibName: ArticleTableViewCell.nibName, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: ArticleTableViewCell.identifier)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 44
         
         viewModel.delegate = self
     }
@@ -46,12 +57,14 @@ extension FavouritesTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if viewModel.favouriteArticles.isEmpty {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: EmptyCellConstants.identifier, for: indexPath)
+
             tableView.separatorStyle = .none
+            
             return cell
             
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: ArticleTableViewCell.identifier, for: indexPath) as! ArticleTableViewCell
             let article = viewModel.favouriteArticles[indexPath.row]
             
             tableView.separatorStyle = .singleLine

@@ -1,20 +1,31 @@
 import UIKit
 
+// MARK: - Helper Types
+
+private enum LoadingCellConstants {
+    static let nibName = "LoadingTableViewCell"
+    static let identifier = "LoadingCell"
+}
+
 final class ArticlesTableViewController: UITableViewController {
     
     //MARK: - Properties
     
     var viewModel: ArticlesViewModel!
+
+    static let storybordIdentifier = "ArticlesStoryboard"
     
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var nib = UINib(nibName: "ArticleTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "ArticleCell")
-        nib = UINib(nibName: "LoadingTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "LoadingCell")
+        var nib = UINib(nibName: ArticleTableViewCell.nibName, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: ArticleTableViewCell.identifier)
+        nib = UINib(nibName: LoadingCellConstants.nibName, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: LoadingCellConstants.identifier)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 44
         
         viewModel.delegate = self
         viewModel.loadArticles()
@@ -52,7 +63,7 @@ extension ArticlesTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch viewModel.state {
         case .loading:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: LoadingCellConstants.identifier, for: indexPath)
             let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
             
             spinner.startAnimating()
@@ -61,7 +72,7 @@ extension ArticlesTableViewController {
             return cell
             
         case .foundArticles:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: ArticleTableViewCell.identifier, for: indexPath) as! ArticleTableViewCell
             let article = viewModel.articles[indexPath.row]
             
             tableView.separatorStyle = .singleLine

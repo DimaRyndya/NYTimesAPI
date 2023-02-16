@@ -14,8 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //MARK: - Set up MostEmailedScreen
         
-        let mostEmailedNavigationController = UIStoryboard(name: "ArticlesStoryboard", bundle: nil).instantiateInitialViewController() as? UINavigationController
-        
+        let mostEmailedNavigationController = UIStoryboard(name: ArticlesTableViewController.storybordIdentifier, bundle: nil).instantiateInitialViewController() as? UINavigationController
         let mostEmailedVC = mostEmailedNavigationController?.viewControllers.first as? ArticlesTableViewController
 
         let mostEmailedURL = "https://api.nytimes.com/svc/mostpopular/v2/emailed/30.json"
@@ -27,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //MARK: - Set up MostSharedScreen
         
-        let mostSharedNavigationController = UIStoryboard(name: "ArticlesStoryboard", bundle: nil).instantiateInitialViewController() as? UINavigationController
+        let mostSharedNavigationController = UIStoryboard(name: ArticlesTableViewController.storybordIdentifier, bundle: nil).instantiateInitialViewController() as? UINavigationController
         let mostSharedVC = mostSharedNavigationController?.viewControllers.first as? ArticlesTableViewController
         let mostSharedURL = "https://api.nytimes.com/svc/mostpopular/v2/shared/30/facebook.json"
         let mostSharedNetworkService = ArticlesNetworkService(url: mostSharedURL)
@@ -38,7 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //MARK: - Set up MostViewedScreen
         
-        let mostViewedNavigationController = UIStoryboard(name: "ArticlesStoryboard", bundle: nil).instantiateInitialViewController() as? UINavigationController
+        let mostViewedNavigationController = UIStoryboard(name: ArticlesTableViewController.storybordIdentifier, bundle: nil).instantiateInitialViewController() as? UINavigationController
         let mostViewedVC = mostViewedNavigationController?.viewControllers.first as? ArticlesTableViewController
         let mostViewedURL = "https://api.nytimes.com/svc/mostpopular/v2/viewed/30.json"
         let mostViewedNetworkService = ArticlesNetworkService(url: mostViewedURL)
@@ -49,12 +48,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //MARK: - Set up FavouritesScreen
         
-        let favouriteArticlesNavigationController = UIStoryboard(name: "FavouriteArticlesStoryboard", bundle: nil).instantiateInitialViewController() as? UINavigationController
+        let favouriteArticlesNavigationController = UIStoryboard(name: FavouritesTableViewController.storybordIdentifier, bundle: nil).instantiateInitialViewController() as? UINavigationController
         let favouriteArticlesVC = favouriteArticlesNavigationController?.viewControllers.first as? FavouritesTableViewController
-        
         let favouriteArticleViewModel = FavouriteArticlesViewModel(cacheService: cacheService)
+
         favouriteArticlesVC?.viewModel = favouriteArticleViewModel
-        
         favouriteArticlesVC?.viewModel.cacheService.managedObjectContext = managedObjectContext
         
         //MARK: - Set up TabBar

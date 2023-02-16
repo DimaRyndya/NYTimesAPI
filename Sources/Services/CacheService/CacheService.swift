@@ -7,7 +7,7 @@ final class CacheService {
     
     var managedObjectContext: NSManagedObjectContext!
     
-    private let fetchRequest = NSFetchRequest<PersistedArticleModel>(entityName: "PersistedArticleModel")
+    private let fetchRequest = NSFetchRequest<PersistedArticleModel>(entityName: PersistedArticleModel.entityName)
     
     //MARK: - Public
     

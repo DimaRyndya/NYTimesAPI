@@ -14,6 +14,9 @@ final class ArticleTableViewCell: UITableViewCell {
     
     /// Cell must be configured with article
     private var article: ArticleModel!
+
+    static let nibName = "ArticleTableViewCell"
+    static let identifier = "ArticleCell"
     
     weak var delegate: ArticleTableViewCellDelegate?
     

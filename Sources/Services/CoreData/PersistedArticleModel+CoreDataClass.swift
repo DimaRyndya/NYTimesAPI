@@ -3,7 +3,7 @@ import CoreData
 
 @objc(PersistedArticleModel)
 public class PersistedArticleModel: NSManagedObject {
-
+    static let entityName = "PersistedArticleModel"
 }
 
 //MARK: PersistedArticle Model
@@ -11,7 +11,7 @@ public class PersistedArticleModel: NSManagedObject {
 extension PersistedArticleModel: Identifiable {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<PersistedArticleModel> {
-        return NSFetchRequest<PersistedArticleModel>(entityName: "PersistedArticleModel")
+        return NSFetchRequest<PersistedArticleModel>(entityName: PersistedArticleModel.entityName)
     }
 
     @NSManaged public var articleAuthor: String?
