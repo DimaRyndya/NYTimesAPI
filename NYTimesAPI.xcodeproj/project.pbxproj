@@ -527,7 +527,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CHL34W9FC3;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = /Users/dmitriyryndya/Documents/Developer/NYTimesAPI/Resources/Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIMainStoryboardFile = ArticlesStoryboard;
@@ -560,7 +560,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CHL34W9FC3;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = /Users/dmitriyryndya/Documents/Developer/NYTimesAPI/Resources/Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIMainStoryboardFile = ArticlesStoryboard;
