@@ -4,8 +4,18 @@ import CoreData
 final class CacheService {
     
     //MARK: - Properties
+
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "NYTimesAPI")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
     
-    var managedObjectContext: NSManagedObjectContext!
+    lazy var managedObjectContext = persistentContainer.viewContext
     
     private let fetchRequest = NSFetchRequest<PersistedArticleModel>(entityName: PersistedArticleModel.entityName)
     
@@ -59,5 +69,19 @@ final class CacheService {
         
         let articleModel = persistentArticles.map { ArticleModel(article: $0) }
         return articleModel
+    }
+
+    // MARK: - Core Data Saving support
+
+    func saveContext () {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
     }
 }

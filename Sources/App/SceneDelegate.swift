@@ -1,16 +1,14 @@
 import UIKit
-import CoreData
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    let cacheService = CacheService()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        
-        let cacheService = CacheService()
         
         //MARK: - Set up MostEmailedScreen
         
@@ -53,7 +51,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let favouriteArticleViewModel = FavouriteArticlesViewModel(cacheService: cacheService)
 
         favouriteArticlesVC?.viewModel = favouriteArticleViewModel
-        favouriteArticlesVC?.viewModel.cacheService.managedObjectContext = managedObjectContext
+//        favouriteArticlesVC?.viewModel.cacheService.managedObjectContext = managedObjectContext
         
         //MARK: - Set up TabBar
         
@@ -86,35 +84,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
     }
     
-    // MARK: - Core Data stack
-    
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "NYTimesAPI")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-    
-    lazy var managedObjectContext = persistentContainer.viewContext
-    
-    // MARK: - Core Data Saving support
-    
-    func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }
-    
     func sceneDidEnterBackground(_ scene: UIScene) {
-        saveContext()
+        cacheService.saveContext()
     }
 }
