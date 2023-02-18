@@ -1,6 +1,6 @@
 import UIKit
 
-class UIBuilderRootViewController {
+final class UIBuilderRootViewController {
 
     //MARK: - Properties
 
@@ -77,7 +77,7 @@ class UIBuilderRootViewController {
             mostViewedItem.image = UIImage(systemName: "star")
             mostViewedItem.selectedImage = UIImage(systemName: "star.fill")
         }
-
+        
         return tabBarVC
     }
 }

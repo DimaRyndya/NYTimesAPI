@@ -3,7 +3,7 @@ import CoreData
 
 final class CacheService {
     
-    //MARK: - Properties
+//MARK: - Core Data Stack
 
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "NYTimesAPI")
@@ -16,6 +16,8 @@ final class CacheService {
     }()
     
     lazy var managedObjectContext = persistentContainer.viewContext
+
+    //MARK: - Properties
     
     private let fetchRequest = NSFetchRequest<PersistedArticleModel>(entityName: PersistedArticleModel.entityName)
     
