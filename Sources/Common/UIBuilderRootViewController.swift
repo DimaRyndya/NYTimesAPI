@@ -2,13 +2,9 @@ import UIKit
 
 final class UIBuilderRootViewController {
 
-    //MARK: - Properties
-
-    let cacheService = CacheService()
-
     //MARK: Public
     
-    func buildRootViewController() -> UITabBarController {
+    func buildRootViewController(cacheService: CacheService) -> UITabBarController {
         
         //MARK: - Set up MostEmailedScreen
 

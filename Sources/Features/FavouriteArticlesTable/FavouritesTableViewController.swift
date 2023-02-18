@@ -12,6 +12,7 @@ final class FavouritesTableViewController: UITableViewController {
     var viewModel: FavouriteArticlesViewModel!
 
     static let storybordIdentifier = "FavouriteArticlesStoryboard"
+    static let tableViewRowHeight = 44.0
     
     //MARK: - LifeCycle
     
@@ -23,7 +24,7 @@ final class FavouritesTableViewController: UITableViewController {
         nib = UINib(nibName: ArticleTableViewCell.nibName, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: ArticleTableViewCell.identifier)
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 44
+        tableView.estimatedRowHeight = FavouritesTableViewController.tableViewRowHeight
         
         viewModel.delegate = self
     }
