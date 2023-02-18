@@ -38,7 +38,7 @@ final class FavouritesTableViewController: UITableViewController {
 
 extension FavouritesTableViewController: FavouriteArticlesViewModelDeleagte {
     
-    func reloadUI() {
+    func reloadUI(_ viewModel: FavouriteArticlesViewModel) {
         tableView.reloadData()
     }
 }

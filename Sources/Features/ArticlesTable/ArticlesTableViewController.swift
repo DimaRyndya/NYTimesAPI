@@ -40,12 +40,12 @@ final class ArticlesTableViewController: UITableViewController {
 //MARK: - MostEmailed ViewModel Delegate
 
 extension ArticlesTableViewController: ArticlesViewModelDelegate {
-    
-    func reloadUI() {
+    func reloadUI(_ viewModel: ArticlesViewModel) {
         viewModel.state = .foundArticles
         tableView.reloadData()
     }
 }
+
 
 // MARK: - Table view data source
 

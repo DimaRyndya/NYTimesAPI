@@ -1,7 +1,7 @@
 import UIKit
 
 protocol ArticleTableViewCellDelegate: AnyObject {
-    func toggleFavouriteState(for article: ArticleModel)
+    func toggleFavouriteState(_ cell: ArticleTableViewCell, for article: ArticleModel)
 }
 
 final class ArticleTableViewCell: UITableViewCell {
@@ -36,6 +36,6 @@ final class ArticleTableViewCell: UITableViewCell {
     
     @IBAction func toggleFavouriteState(_ sender: UIButton) {
         article?.isFavourite.toggle()
-        delegate?.toggleFavouriteState(for: article)
+        delegate?.toggleFavouriteState(self, for: article)
     }
 }

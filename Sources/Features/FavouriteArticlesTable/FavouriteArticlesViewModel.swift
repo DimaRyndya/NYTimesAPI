@@ -1,7 +1,7 @@
 import UIKit
 
 protocol FavouriteArticlesViewModelDeleagte: AnyObject {
-    func reloadUI()
+    func reloadUI(_ viewModel: FavouriteArticlesViewModel)
 }
 
 final class FavouriteArticlesViewModel {
@@ -22,20 +22,22 @@ final class FavouriteArticlesViewModel {
             self.favouriteArticles = cacheService.getArticles()
         }
     }
+
+    //MARK: Public
+
+    func articlesIsUpdated() {
+        favouriteArticles = cacheService.getArticles()
+        delegate?.reloadUI(self)
+    }
 }
 
 //MARK: - ArticleTableViewCell Delegate
 
 extension FavouriteArticlesViewModel: ArticleTableViewCellDelegate {
 
-    func articlesIsUpdated() {
-        favouriteArticles = cacheService.getArticles()
-        delegate?.reloadUI()
-    }
-
-    func toggleFavouriteState(for article: ArticleModel) {
+    func toggleFavouriteState(_ cell: ArticleTableViewCell, for article: ArticleModel) {
         cacheService.removeArticle(with: article.id)
         articlesIsUpdated()
-        delegate?.reloadUI()
+        delegate?.reloadUI(self)
     }
 }

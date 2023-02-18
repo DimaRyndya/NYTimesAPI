@@ -1,7 +1,7 @@
 import UIKit
 
 protocol ArticlesViewModelDelegate: AnyObject {
-    func reloadUI()
+    func reloadUI(_ viewModel: ArticlesViewModel)
 }
 
 final class ArticlesViewModel: ArticleTableViewCellDelegate {
@@ -40,16 +40,16 @@ final class ArticlesViewModel: ArticleTableViewCellDelegate {
         networkService.fetchArticles { [weak self] response in
             guard let self else { return }
             self.articles = response
-            self.delegate?.reloadUI()
+            self.delegate?.reloadUI(self)
         }
     }
     
-    func toggleFavouriteState(for article: ArticleModel) {
+    func toggleFavouriteState(_ cell: ArticleTableViewCell, for article: ArticleModel) {
         if cacheService.isArticleExists(id: article.id) {
             cacheService.removeArticle(with: article.id)
         } else {
             cacheService.add(article: article)
         }
-        delegate?.reloadUI()
+        delegate?.reloadUI(self)
     }
 }
