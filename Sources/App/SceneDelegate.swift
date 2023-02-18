@@ -6,7 +6,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     let rootVCBuilder = UIBuilderRootViewController()
-    let sharedService = SharedServices()
+    let sharedServices = SharedServices()
 
     //MARK: - Application lifecycle
     
@@ -15,12 +15,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
-        window.rootViewController = rootVCBuilder.buildRootViewController(cacheService: sharedService.cacheService)
+        window.rootViewController = rootVCBuilder.buildRootViewController(cacheService: sharedServices.cacheService)
         self.window = window
         window.makeKeyAndVisible()
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
-        sharedService.cacheService.saveContext()
+        sharedServices.cacheService.saveContext()
     }
 }

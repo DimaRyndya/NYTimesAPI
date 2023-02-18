@@ -5,19 +5,20 @@ final class ArticlesNetworkService {
     
     //MARK: - Properties
     
-    private let baseURL: String
+    private let baseURL = "https://api.nytimes.com"
+    private let requestURL: String
     private let parameters: Parameters = ["api-key" : "i4T2FJirMgYdE6aDvr5oBugtyBtqJff0"]
     
     //MARK: Init
     
-    init(url: String) {
-        self.baseURL = url
+    init(requestURL: String) {
+        self.requestURL = requestURL
     }
     
     //MARK: - Public
     
     func fetchArticles(completion: @escaping ([ArticleModel]) -> ()) {
-        AF.request(baseURL, parameters: parameters).responseDecodable(of: ArticleRequestResponse.self) { response in
+        AF.request(baseURL + requestURL, parameters: parameters).responseDecodable(of: ArticleRequestResponse.self) { response in
             switch response.result {
             case .success(let result):
                 completion(result.articles)
